@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T14:10:42.771471+00:00",
+  "generatedAt": "2026-10-19T15:02:08.237212+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -1972,6 +1972,25 @@
       "thumbnail": "https://i.ytimg.com/vi/d9uYQyf_Xdg/mqdefault.jpg",
       "candidate": false,
       "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "rYa_zw2fKRg",
+      "title": "【最新ゲーム機】新しい家族を開封する【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "other",
+      "day": "2026-04-24",
+      "start": "2026-04-24T11:00:33Z",
+      "end": "2026-04-24T11:56:05Z",
+      "scheduledStart": "2026-04-24T11:00:00Z",
+      "actualStart": "2026-04-24T11:00:33Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=rYa_zw2fKRg",
+      "thumbnail": "https://i.ytimg.com/vi/rYa_zw2fKRg/mqdefault.jpg",
+      "candidate": true,
+      "source": "manual-video-request",
       "suggestedTag": "",
       "greenScore": 0.0,
       "available": true
