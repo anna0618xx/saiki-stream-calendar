@@ -19,7 +19,7 @@ import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.parse import urlencode, urlsplit, parse_qs
+from urllib.parse import urlencode, urlsplit, parse_qs, quote, urlunsplit
 from urllib.request import Request, urlopen
 
 from bs4 import BeautifulSoup
@@ -38,7 +38,13 @@ VIDEO_ID = re.compile(r'^[\w-]{11}$')
 
 
 def fetch_bytes(url: str, timeout: int = 20) -> bytes:
-    req = Request(url, headers={'User-Agent':USER_AGENT, 'Accept-Language':'ja'})
+    # urllib.request.Request encodes the request line as ASCII.
+    # Percent-encode non-ASCII path characters (such as Japanese Wiki names).
+    parsed = urlsplit(url)
+    safe_path = quote(parsed.path, safe="/%:@+-._~")
+    safe_query = quote(parsed.query, safe="=&;%:@+,/?-._~")
+    ascii_url = urlunsplit((parsed.scheme, parsed.netloc, safe_path, safe_query, parsed.fragment))
+    req = Request(ascii_url, headers={'User-Agent':USER_AGENT, 'Accept-Language':'ja'})
     with urlopen(req, timeout=timeout) as response:
         return response.read()
 
@@ -241,7 +247,6 @@ def main():
     if OUT.exists():
         try:old={r['videoId']:r for r in json.loads(OUT.read_text(encoding='utf-8')).get('streams',[]) if r.get('videoId')}
         except (KeyError, ValueError):pass
-    items={}
     items={}
     if os.environ.get('FETCH_WIKI', '1') == '1':
         try:
