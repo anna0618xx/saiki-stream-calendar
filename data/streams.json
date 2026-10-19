@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T00:00:00+00:00",
+  "generatedAt": "2026-10-19T13:54:40.111099+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -17,25 +17,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "qYTUhHDLg1I",
-      "title": "Winning Post 10 新年",
-      "channel": "佐伯イッテツ",
-      "channelType": "self",
-      "day": "2026-01-03",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=qYTUhHDLg1I",
-      "thumbnail": "https://i.ytimg.com/vi/qYTUhHDLg1I/mqdefault.jpg",
-      "candidate": false,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "-bIN_7z9rdQ",
@@ -53,7 +35,25 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.003
+    },
+    {
+      "videoId": "qYTUhHDLg1I",
+      "title": "Winning Post 10 新年",
+      "channel": "佐伯イッテツ",
+      "channelType": "self",
+      "day": "2026-01-03",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=qYTUhHDLg1I",
+      "thumbnail": "https://i.ytimg.com/vi/qYTUhHDLg1I/mqdefault.jpg",
+      "candidate": false,
+      "source": "verified-wiki-2026-starter",
+      "suggestedTag": "",
+      "greenScore": 0.007
     },
     {
       "videoId": "ryHRIbE7sHk",
@@ -71,7 +71,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.007
     },
     {
       "videoId": "BDE24F_Qxxo",
@@ -89,7 +89,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.007
     },
     {
       "videoId": "fanHUKyN9xU",
@@ -107,7 +107,7 @@
       "candidate": true,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "sQFk2K5OdOE",
@@ -125,7 +125,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.007
     },
     {
       "videoId": "CPPrGgNAXQM",
@@ -143,25 +143,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "OijAn3hCqdQ",
-      "title": "朝雑談 その2",
-      "channel": "佐伯イッテツ",
-      "channelType": "self",
-      "day": "2026-01-09",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=OijAn3hCqdQ",
-      "thumbnail": "https://i.ytimg.com/vi/OijAn3hCqdQ/mqdefault.jpg",
-      "candidate": false,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "Exz2xPgABoY",
@@ -179,7 +161,25 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
+    },
+    {
+      "videoId": "OijAn3hCqdQ",
+      "title": "朝雑談 その2",
+      "channel": "佐伯イッテツ",
+      "channelType": "self",
+      "day": "2026-01-09",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=OijAn3hCqdQ",
+      "thumbnail": "https://i.ytimg.com/vi/OijAn3hCqdQ/mqdefault.jpg",
+      "candidate": false,
+      "source": "verified-wiki-2026-starter",
+      "suggestedTag": "",
+      "greenScore": 0.0
     },
     {
       "videoId": "d6EHN-ht3CU",
@@ -197,7 +197,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "tFEvCAtg9P8",
@@ -215,25 +215,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "hdOwn-_ANCY",
-      "title": "STREET FIGHTER 6",
-      "channel": "佐伯イッテツ",
-      "channelType": "self",
-      "day": "2026-01-12",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=hdOwn-_ANCY",
-      "thumbnail": "https://i.ytimg.com/vi/hdOwn-_ANCY/mqdefault.jpg",
-      "candidate": false,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.009
     },
     {
       "videoId": "LsmhP01AmDg",
@@ -251,7 +233,25 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
+    },
+    {
+      "videoId": "hdOwn-_ANCY",
+      "title": "STREET FIGHTER 6",
+      "channel": "佐伯イッテツ",
+      "channelType": "self",
+      "day": "2026-01-12",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=hdOwn-_ANCY",
+      "thumbnail": "https://i.ytimg.com/vi/hdOwn-_ANCY/mqdefault.jpg",
+      "candidate": false,
+      "source": "verified-wiki-2026-starter",
+      "suggestedTag": "",
+      "greenScore": 0.0
     },
     {
       "videoId": "nvbDCBzZaoY",
@@ -269,7 +269,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.036
     },
     {
       "videoId": "TcsCKfCIHfA",
@@ -286,8 +286,8 @@
       "thumbnail": "https://i.ytimg.com/vi/TcsCKfCIHfA/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "q8w1jqyMP-8",
@@ -305,7 +305,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.007
     },
     {
       "videoId": "-ksovG02Bc8",
@@ -323,7 +323,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "_1YgN7AYNA4",
@@ -341,97 +341,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "cN-PiqBzs_8",
-      "title": "Oriens マリオパーティ",
-      "channel": "公式チャンネル",
-      "channelType": "official",
-      "day": "2026-01-18",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=cN-PiqBzs_8",
-      "thumbnail": "https://i.ytimg.com/vi/cN-PiqBzs_8/mqdefault.jpg",
-      "candidate": true,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "sQ7pGyoBTSs",
-      "title": "四季凪アキラ 恋愛相談コラボ",
-      "channel": "他ライバー・ユニット",
-      "channelType": "other",
-      "day": "2026-01-31",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=sQ7pGyoBTSs",
-      "thumbnail": "https://i.ytimg.com/vi/sQ7pGyoBTSs/mqdefault.jpg",
-      "candidate": true,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "SDTUi6m0j-Y",
-      "title": "不破湊 ウエハース耐久",
-      "channel": "他ライバー・ユニット",
-      "channelType": "other",
-      "day": "2026-02-14",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=SDTUi6m0j-Y",
-      "thumbnail": "https://i.ytimg.com/vi/SDTUi6m0j-Y/mqdefault.jpg",
-      "candidate": true,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "lZQSMt9yRGE",
-      "title": "周央サンゴ にじTOHO",
-      "channel": "他ライバー・ユニット",
-      "channelType": "other",
-      "day": "2026-02-26",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=lZQSMt9yRGE",
-      "thumbnail": "https://i.ytimg.com/vi/lZQSMt9yRGE/mqdefault.jpg",
-      "candidate": true,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "nofrcYMwHes",
-      "title": "篠宮ゆの ASMR講座",
-      "channel": "他ライバー・ユニット",
-      "channelType": "other",
-      "day": "2026-02-27",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=nofrcYMwHes",
-      "thumbnail": "https://i.ytimg.com/vi/nofrcYMwHes/mqdefault.jpg",
-      "candidate": true,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "IyUb3jan7-U",
@@ -449,7 +359,25 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
+    },
+    {
+      "videoId": "cN-PiqBzs_8",
+      "title": "Oriens マリオパーティ",
+      "channel": "公式チャンネル",
+      "channelType": "official",
+      "day": "2026-01-18",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=cN-PiqBzs_8",
+      "thumbnail": "https://i.ytimg.com/vi/cN-PiqBzs_8/mqdefault.jpg",
+      "candidate": true,
+      "source": "verified-wiki-2026-starter",
+      "suggestedTag": "",
+      "greenScore": 0.034
     },
     {
       "videoId": "ZUyrndu-M2Q",
@@ -467,7 +395,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "dAC_IbVXe90",
@@ -485,7 +413,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "vQsOtDzNB-Y",
@@ -503,7 +431,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "Y4VvBUmvt98",
@@ -521,7 +449,7 @@
       "candidate": true,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.008
     },
     {
       "videoId": "kQ4rS9gk_Cc",
@@ -539,7 +467,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "4oXnZ8eCm2s",
@@ -557,7 +485,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.25
     },
     {
       "videoId": "agYgZK4d3ks",
@@ -575,7 +503,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "MxlGjZpgZc0",
@@ -593,7 +521,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "xVTWhNJ7Zo8",
@@ -611,7 +539,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.01
     },
     {
       "videoId": "Xi42d-74NzA",
@@ -629,25 +557,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "qWjyhfNz4Cw",
-      "title": "ポケモンバイオレット2",
-      "channel": "佐伯イッテツ",
-      "channelType": "self",
-      "day": "2026-01-30",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=qWjyhfNz4Cw",
-      "thumbnail": "https://i.ytimg.com/vi/qWjyhfNz4Cw/mqdefault.jpg",
-      "candidate": false,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "D3XeFj5_gzM",
@@ -665,7 +575,43 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.01
+    },
+    {
+      "videoId": "qWjyhfNz4Cw",
+      "title": "ポケモンバイオレット2",
+      "channel": "佐伯イッテツ",
+      "channelType": "self",
+      "day": "2026-01-30",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=qWjyhfNz4Cw",
+      "thumbnail": "https://i.ytimg.com/vi/qWjyhfNz4Cw/mqdefault.jpg",
+      "candidate": false,
+      "source": "verified-wiki-2026-starter",
+      "suggestedTag": "",
+      "greenScore": 0.01
+    },
+    {
+      "videoId": "sQ7pGyoBTSs",
+      "title": "四季凪アキラ 恋愛相談コラボ",
+      "channel": "他ライバー・ユニット",
+      "channelType": "other",
+      "day": "2026-01-31",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=sQ7pGyoBTSs",
+      "thumbnail": "https://i.ytimg.com/vi/sQ7pGyoBTSs/mqdefault.jpg",
+      "candidate": true,
+      "source": "verified-wiki-2026-starter",
+      "suggestedTag": "",
+      "greenScore": 0.003
     },
     {
       "videoId": "GvmbsxXHH-s",
@@ -683,7 +629,7 @@
       "candidate": true,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.001
     },
     {
       "videoId": "kjRYn2sya2A",
@@ -701,7 +647,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "TC4prvWWvE8",
@@ -719,7 +665,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.01
     },
     {
       "videoId": "Z3E_FGglsos",
@@ -736,8 +682,8 @@
       "thumbnail": "https://i.ytimg.com/vi/Z3E_FGglsos/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "JAL7ewRHV5Y",
@@ -755,25 +701,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "nmmqOGSiHyM",
-      "title": "Bladesong",
-      "channel": "佐伯イッテツ",
-      "channelType": "self",
-      "day": "2026-02-11",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=nmmqOGSiHyM",
-      "thumbnail": "https://i.ytimg.com/vi/nmmqOGSiHyM/mqdefault.jpg",
-      "candidate": false,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.01
     },
     {
       "videoId": "YhJQs3EyB-M",
@@ -791,7 +719,25 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
+    },
+    {
+      "videoId": "nmmqOGSiHyM",
+      "title": "Bladesong",
+      "channel": "佐伯イッテツ",
+      "channelType": "self",
+      "day": "2026-02-11",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=nmmqOGSiHyM",
+      "thumbnail": "https://i.ytimg.com/vi/nmmqOGSiHyM/mqdefault.jpg",
+      "candidate": false,
+      "source": "verified-wiki-2026-starter",
+      "suggestedTag": "",
+      "greenScore": 0.0
     },
     {
       "videoId": "_9qJCD8kgzM",
@@ -809,7 +755,25 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.004
+    },
+    {
+      "videoId": "SDTUi6m0j-Y",
+      "title": "不破湊 ウエハース耐久",
+      "channel": "他ライバー・ユニット",
+      "channelType": "other",
+      "day": "2026-02-14",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=SDTUi6m0j-Y",
+      "thumbnail": "https://i.ytimg.com/vi/SDTUi6m0j-Y/mqdefault.jpg",
+      "candidate": true,
+      "source": "verified-wiki-2026-starter",
+      "suggestedTag": "",
+      "greenScore": 0.009
     },
     {
       "videoId": "2Tmdh5G7-Kg",
@@ -827,7 +791,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.001
     },
     {
       "videoId": "CApLT_vHxKA",
@@ -844,8 +808,8 @@
       "thumbnail": "https://i.ytimg.com/vi/CApLT_vHxKA/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "Z98OvseRUTY",
@@ -862,8 +826,8 @@
       "thumbnail": "https://i.ytimg.com/vi/Z98OvseRUTY/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "Y7b73IQ9qJM",
@@ -880,8 +844,44 @@
       "thumbnail": "https://i.ytimg.com/vi/Y7b73IQ9qJM/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
+      "suggestedTag": "chat",
+      "greenScore": 1.0
+    },
+    {
+      "videoId": "lZQSMt9yRGE",
+      "title": "周央サンゴ にじTOHO",
+      "channel": "他ライバー・ユニット",
+      "channelType": "other",
+      "day": "2026-02-26",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=lZQSMt9yRGE",
+      "thumbnail": "https://i.ytimg.com/vi/lZQSMt9yRGE/mqdefault.jpg",
+      "candidate": true,
+      "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
+    },
+    {
+      "videoId": "nofrcYMwHes",
+      "title": "篠宮ゆの ASMR講座",
+      "channel": "他ライバー・ユニット",
+      "channelType": "other",
+      "day": "2026-02-27",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=nofrcYMwHes",
+      "thumbnail": "https://i.ytimg.com/vi/nofrcYMwHes/mqdefault.jpg",
+      "candidate": true,
+      "source": "verified-wiki-2026-starter",
+      "suggestedTag": "",
+      "greenScore": 0.002
     },
     {
       "videoId": "6Qy0eruaaZY",
@@ -899,7 +899,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "UbcuM2yO9jw",
@@ -916,8 +916,8 @@
       "thumbnail": "https://i.ytimg.com/vi/UbcuM2yO9jw/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "SiiStJaCyyc",
@@ -934,8 +934,8 @@
       "thumbnail": "https://i.ytimg.com/vi/SiiStJaCyyc/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "ibGIpmZKTkA",
@@ -953,7 +953,7 @@
       "candidate": true,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "0klsYOrBm9o",
@@ -970,8 +970,8 @@
       "thumbnail": "https://i.ytimg.com/vi/0klsYOrBm9o/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "p55U79aGi68",
@@ -989,7 +989,7 @@
       "candidate": true,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "hbYkgWceV7A",
@@ -1006,8 +1006,8 @@
       "thumbnail": "https://i.ytimg.com/vi/hbYkgWceV7A/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "4QSBL9-GpmE",
@@ -1024,8 +1024,8 @@
       "thumbnail": "https://i.ytimg.com/vi/4QSBL9-GpmE/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "qiimp1EmS28",
@@ -1042,8 +1042,8 @@
       "thumbnail": "https://i.ytimg.com/vi/qiimp1EmS28/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "C-ycTz4Yqws",
@@ -1060,8 +1060,8 @@
       "thumbnail": "https://i.ytimg.com/vi/C-ycTz4Yqws/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "xqQ1vTPFLfU",
@@ -1078,8 +1078,8 @@
       "thumbnail": "https://i.ytimg.com/vi/xqQ1vTPFLfU/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "QhieDV4keiI",
@@ -1097,7 +1097,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.062
     },
     {
       "videoId": "QvFdGhxR9xg",
@@ -1115,7 +1115,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "KlXjKItAcLA",
@@ -1133,7 +1133,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "yDkeInXv7e4",
@@ -1151,7 +1151,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "zaR32Fze6Z0",
@@ -1169,7 +1169,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "AXNU80gPCzw",
@@ -1186,8 +1186,8 @@
       "thumbnail": "https://i.ytimg.com/vi/AXNU80gPCzw/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 0.477
     },
     {
       "videoId": "3Gtd1W33CBM",
@@ -1205,7 +1205,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "kR3E4vilWWM",
@@ -1223,7 +1223,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
     },
     {
       "videoId": "r-ShqYx-Zmc",
@@ -1241,7 +1241,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.011
     },
     {
       "videoId": "zTOp6ffRvco",
@@ -1259,7 +1259,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.038
     },
     {
       "videoId": "ay9bt4V5Vzo",
@@ -1276,8 +1276,8 @@
       "thumbnail": "https://i.ytimg.com/vi/ay9bt4V5Vzo/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "LsVCt5ycLy0",
@@ -1294,8 +1294,8 @@
       "thumbnail": "https://i.ytimg.com/vi/LsVCt5ycLy0/mqdefault.jpg",
       "candidate": false,
       "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "suggestedTag": "chat",
+      "greenScore": 1.0
     },
     {
       "videoId": "IBXtxc9Jdr4",
@@ -1313,25 +1313,7 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
-    },
-    {
-      "videoId": "aRxV4oIE8OM",
-      "title": "感想会",
-      "channel": "佐伯イッテツ",
-      "channelType": "self",
-      "day": "2026-10-13",
-      "start": null,
-      "end": null,
-      "actualStart": null,
-      "scheduledStart": null,
-      "status": "archive-unverified",
-      "url": "https://www.youtube.com/watch?v=aRxV4oIE8OM",
-      "thumbnail": "https://i.ytimg.com/vi/aRxV4oIE8OM/mqdefault.jpg",
-      "candidate": false,
-      "source": "verified-wiki-2026-starter",
-      "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.002
     },
     {
       "videoId": "PwXA_eM06no",
@@ -1349,7 +1331,25 @@
       "candidate": false,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.0
+    },
+    {
+      "videoId": "aRxV4oIE8OM",
+      "title": "感想会",
+      "channel": "佐伯イッテツ",
+      "channelType": "self",
+      "day": "2026-10-13",
+      "start": null,
+      "end": null,
+      "actualStart": null,
+      "scheduledStart": null,
+      "status": "archive-unverified",
+      "url": "https://www.youtube.com/watch?v=aRxV4oIE8OM",
+      "thumbnail": "https://i.ytimg.com/vi/aRxV4oIE8OM/mqdefault.jpg",
+      "candidate": false,
+      "source": "verified-wiki-2026-starter",
+      "suggestedTag": "",
+      "greenScore": 0.0
     },
     {
       "videoId": "LN-DrVdoA24",
@@ -1367,8 +1367,8 @@
       "candidate": true,
       "source": "verified-wiki-2026-starter",
       "suggestedTag": "",
-      "greenScore": null
+      "greenScore": 0.003
     }
   ],
-  "notice": "スターター：Wiki掲載の一部の動画。完全版はcollect.pyで更新。実際の開始時刻未取得。"
+  "notice": "Wiki dates may not be actual broadcast times; YouTube API enrichment optional."
 }
