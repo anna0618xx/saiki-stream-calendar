@@ -6,8 +6,8 @@ on:
     paths-ignore:
       - 'data/**'
   schedule:
-    - cron: '7,22,37,52 * * * *'
-    - cron: '14 1,13 * * *'
+    # 05:00 and 17:00 Japan Standard Time (UTC+9) = 20:00 and 08:00 UTC.
+    - cron: '0 8,20 * * *'
 permissions:
   contents: write
   pages: write
@@ -24,19 +24,25 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      # On UI-only pushes, publish directly without querying YouTube/Wiki.
       - uses: actions/setup-python@v5
+        if: github.event_name != 'push'
         with:
           python-version: '3.12'
       - name: Install parser
+        if: github.event_name != 'push'
         run: python -m pip install beautifulsoup4 pillow
       - name: Check curated parser fixtures
+        if: github.event_name != 'push'
         run: python scripts/test_collect.py
       - name: Update public broadcast feed
+        if: github.event_name != 'push'
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-          FETCH_WIKI: ${{ (github.event_name != 'schedule' || github.event.schedule == '14 1,13 * * *') && '1' || '0' }}
+          FETCH_WIKI: '1'
         run: python scripts/collect.py
       - name: Commit updated public feed only
+        if: github.event_name != 'push'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
