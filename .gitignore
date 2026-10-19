@@ -1,0 +1,9 @@
+# Never commit private OSHI records or personal screenshots
+PRIVATE_*/
+*DO_NOT_UPLOAD*
+*private*.json
+*.db
+oshi_backup*.zip
+oshi_*.webp
+.env
+__pycache__/
