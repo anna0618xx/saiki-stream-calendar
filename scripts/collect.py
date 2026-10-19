@@ -261,6 +261,22 @@ def main():
         print('Skipping Wiki fetch on frequent refresh; using cached feed.')
     if not items:
         items={k:v for k,v in old.items()}
+    # Supplement Wiki with explicitly requested video IDs. Keep them as
+    # manual-review candidates unless they match an existing OSHI URL.
+    manual_ids_path=ROOT / 'data' / 'manual_video_ids.json'
+    if manual_ids_path.exists():
+        try:
+            manual_ids=json.loads(manual_ids_path.read_text(encoding='utf-8'))
+            if not isinstance(manual_ids,list):
+                raise ValueError('manual_video_ids must be an array')
+            for vid in manual_ids:
+                if isinstance(vid,str) and VIDEO_ID.fullmatch(vid) and vid not in items:
+                    item=make_item(vid,'',None,'other')
+                    item['source']='manual-video-request'
+                    item['candidate']=True
+                    items[vid]=item
+        except (ValueError,OSError) as e:
+            print('Could not read explicit video IDs:',repr(e))
     # Preserve previously discovered entries if Wiki temporarily loses entries.
     # They will still require manual approval if they are from other channels.
     for k,v in old.items():items.setdefault(k,v)
