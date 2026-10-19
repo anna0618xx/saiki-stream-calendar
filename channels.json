@@ -1,0 +1,10 @@
+{
+  "pages_per_channel": 2,
+  "candidate_keywords": ["佐伯イッテツ", "イッテツ", "佐伯", "Oriens", "MECHATU-A", "MECHATU－A", "めちゃつえー"],
+  "channels": [
+    {"name":"佐伯イッテツ", "id":"", "type":"self"},
+    {"name":"にじさんじ公式", "id":"", "type":"official"},
+    {"name":"Oriens公式", "id":"", "type":"official"},
+    {"name":"ヒーローズ公式", "id":"", "type":"official"}
+  ]
+}
