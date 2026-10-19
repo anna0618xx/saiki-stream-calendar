@@ -13,8 +13,9 @@ permissions:
   pages: write
   id-token: write
 concurrency:
-  group: saiki-pages
-  cancel-in-progress: false
+  # Isolated from stale #15 in GitHub's previous concurrency group.
+  group: saiki-pages-recovered
+  cancel-in-progress: true
 jobs:
   publish:
     runs-on: ubuntu-latest
