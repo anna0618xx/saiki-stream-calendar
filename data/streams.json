@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T15:02:08.237212+00:00",
+  "generatedAt": "2026-10-19T15:04:38.511711+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -1980,7 +1980,7 @@
       "videoId": "rYa_zw2fKRg",
       "title": "【最新ゲーム機】新しい家族を開封する【にじさんじ／佐伯イッテツ】",
       "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
-      "channelType": "other",
+      "channelType": "self",
       "day": "2026-04-24",
       "start": "2026-04-24T11:00:33Z",
       "end": "2026-04-24T11:56:05Z",
@@ -1989,7 +1989,7 @@
       "status": "ended",
       "url": "https://www.youtube.com/watch?v=rYa_zw2fKRg",
       "thumbnail": "https://i.ytimg.com/vi/rYa_zw2fKRg/mqdefault.jpg",
-      "candidate": true,
+      "candidate": false,
       "source": "manual-video-request",
       "suggestedTag": "",
       "greenScore": 0.0,
@@ -4937,6 +4937,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.003,
+      "available": true
+    },
+    {
+      "videoId": "Oh3ZwqxeGYI",
+      "title": "【ほぼ初見part01】真珠じゃなくてパール【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-10-19",
+      "start": "2026-10-19T10:29:46Z",
+      "end": null,
+      "scheduledStart": "2026-10-19T10:30:00Z",
+      "actualStart": "2026-10-19T10:29:46Z",
+      "status": "live",
+      "url": "https://www.youtube.com/watch?v=Oh3ZwqxeGYI",
+      "thumbnail": "https://i.ytimg.com/vi/Oh3ZwqxeGYI/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
       "available": true
     }
   ],
