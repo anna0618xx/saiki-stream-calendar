@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T15:04:38.511711+00:00",
+  "generatedAt": "2026-10-19T15:18:48.452601+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -4946,10 +4946,10 @@
       "channelType": "self",
       "day": "2026-10-19",
       "start": "2026-10-19T10:29:46Z",
-      "end": null,
+      "end": "2026-10-19T15:17:11Z",
       "scheduledStart": "2026-10-19T10:30:00Z",
       "actualStart": "2026-10-19T10:29:46Z",
-      "status": "live",
+      "status": "ended",
       "url": "https://www.youtube.com/watch?v=Oh3ZwqxeGYI",
       "thumbnail": "https://i.ytimg.com/vi/Oh3ZwqxeGYI/mqdefault.jpg",
       "candidate": false,
