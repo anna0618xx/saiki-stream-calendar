@@ -225,6 +225,13 @@ def update_api(items: dict):
                 else:rec['available']=False
                 continue
             title=sn.get('title','');desc=sn.get('description','')
+            # An explicitly requested link becomes a self-stream only when
+            # the verified YouTube channel ID matches our approved creator.
+            if rec.get('source')=='manual-video-request':
+                approved_self={cfg['id'] for cfg in channel_ids if cfg.get('type')=='self'}
+                if sn.get('channelId') in approved_self:
+                    rec['channelType']='self'
+                    rec['candidate']=False
             if rec['channelType']=='official' and rec.get('source')!='nijisanji-wiki-2026':
                 if not any(k.casefold() in (title+'\n'+desc).casefold() for k in CFG.get('candidate_keywords',[])):
                     rec['available']=False;continue
