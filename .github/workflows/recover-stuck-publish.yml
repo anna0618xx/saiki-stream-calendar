@@ -1,0 +1,19 @@
+name: Recover stalled Pages workflow (one-time)
+on:
+  push:
+    paths:
+      - '.github/workflows/recover-stuck-publish.yml'
+  workflow_dispatch:
+permissions:
+  actions: write
+jobs:
+  force_cancel_15:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Force-cancel stalled publish run 15
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api --method POST "repos/${{ github.repository }}/actions/runs/39277840717/force-cancel"
+          echo "Force-cancel accepted by GitHub."
