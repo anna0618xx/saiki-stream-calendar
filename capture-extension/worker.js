@@ -132,8 +132,8 @@ chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
   }
   const items=message.items;
   if(busy){sendResponse({ok:false,message:'既に処理中です'});return false}
-  if(!Array.isArray(items)||items.length<1||items.length>5||!items.every(item=>VIDEO_ID.test(item.videoId||''))){
-    sendResponse({ok:false,message:'対象は1〜5件の公開動画に限定しています'});return false;
+  if(!Array.isArray(items)||items.length<1||items.length>7||!items.every(item=>VIDEO_ID.test(item.videoId||''))){
+    sendResponse({ok:false,message:'対象は1〜7件の公開動画に限定しています'});return false;
   }
   busy=true;
   sendResponse({ok:true});
