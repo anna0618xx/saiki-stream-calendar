@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "佐伯配信手帳｜PCスクショ回収（試験版）",
+  "version": "0.1.0",
+  "description": "手動開始した公開YouTube配信だけを順番に開き、表示画面を撮影して佐伯配信手帳へ渡します。",
+  "permissions": [
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://anna0618xx.github.io/saiki-stream-calendar/*"
+      ],
+      "js": [
+        "bridge.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "佐伯配信手帳 スクショ回収"
+  },
+  "minimum_chrome_version": "116"
+}
