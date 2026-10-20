@@ -59,15 +59,23 @@ def main():
     p.add_argument('--limit',type=int,default=1)
     p.add_argument('--age-days',type=int,default=40)
     p.add_argument('--seconds',type=int,default=600)
+    p.add_argument('--retry-video-id',default=None,help='Retry one eligible public SELF video, bypassing only its cooldown')
     args=p.parse_args()
     if not 1<=args.limit<=3 or not 10<=args.seconds<=3600:raise SystemExit('Invalid capture limits')
+    if args.retry_video_id and not VIDEO_ID.fullmatch(args.retry_video_id):raise SystemExit('Invalid retry video ID')
     now=datetime.now(timezone.utc)
     feed=load_json(FEED,{}).get('streams',[])
     manifest=load_json(MANIFEST,{'generatedAt':None,'items':{}})
     if not isinstance(manifest.get('items'),dict):manifest['items']={}
     attempts=load_json(ATTEMPTS,{})
     if not isinstance(attempts,dict):attempts={}
-    todo=choose(feed,set(manifest['items']),attempts,now,max_age_days=args.age_days,limit=args.limit)
+    if args.retry_video_id:
+        target=next((x for x in feed if x.get('videoId')==args.retry_video_id and eligible(x)),None)
+        if target is None:raise SystemExit('Retry target is not an eligible public SELF video')
+        todo=[] if args.retry_video_id in manifest['items'] else [target]
+        print('One-time public retry target:',args.retry_video_id)
+    else:
+        todo=choose(feed,set(manifest['items']),attempts,now,max_age_days=args.age_days,limit=args.limit)
     print('Eligible PUBLIC videos to try:',len(todo))
     changed=False
     for rec in todo:
