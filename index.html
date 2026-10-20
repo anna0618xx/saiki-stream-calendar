@@ -752,8 +752,9 @@ button:focus:not(:focus-visible){outline:none!important;box-shadow:none!importan
 <p class="note">公開アーカイブを1本ずつ表示し、開始10分付近の画面を撮影します。メン限・他チャンネル・スクショ登録済みの配信は対象外。貯金の計上状態とは無関係です。</p>
 <label for="captureRange">取得対象</label>
 <select id="captureRange">
-<option value="backfill">8月20日〜9月30日（初回回収）</option>
 <option value="recent">直近14日（週1回の回収）</option>
+<option value="all">全期間の未登録分</option>
+<option value="backfill">8月20日〜9月30日（初回回収）</option>
 </select>
 <div class="capturePreview" id="capturePreview" aria-live="polite">対象を調べています…</div>
 <div class="captureProgress" id="captureProgress" role="status" aria-live="polite"></div>
@@ -1345,8 +1346,9 @@ const saveCaptureIndex=()=>localStorage.setItem(CAPTURE_INDEX_KEY,JSON.stringify
 let captureItems=[],captureBusy=false,captureTimer=0,captureImportQueue=Promise.resolve(),captureSaved=0;
 function missingScreenshotRows(){
  const now=ymd(new Date());
- const start=$('captureRange').value==='backfill'?'2026-08-20':ymd(new Date(Date.now()-14*86400000));
- const end=$('captureRange').value==='backfill'?'2026-09-30':now;
+ const range=$('captureRange').value;
+ const start=range==='backfill'?'2026-08-20':range==='all'?'2026-01-01':ymd(new Date(Date.now()-14*86400000));
+ const end=range==='backfill'?'2026-09-30':now;
  const feed=archiveFeedCache?.streams||window.SAIKI_ARCHIVE_FEED?.streams||[];
  const publicSelf=new Set(feed.filter(x=>x.channelType==='self'&&x.candidate===false&&x.status==='ended'&&x.available!==false).map(x=>x.videoId));
  return records.filter(x=>{
@@ -1372,7 +1374,7 @@ function showCapturePreview(){
 }
 $('captureLaunch').onclick=()=>{
  if(captureBusy)return;
- $('captureRange').value='backfill';
+ $('captureRange').value='recent';
  $('captureProgress').textContent='';
  showCapturePreview();
  $('captureDialog').showModal();
