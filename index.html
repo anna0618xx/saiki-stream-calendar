@@ -395,36 +395,76 @@ button:focus:not(:focus-visible){outline:none!important;box-shadow:none!importan
 .scheduleSidebar .sideTop h2,#selectedLabel{font-family:'DotGothic16',sans-serif}
 @media(max-width:650px){.streamBtns{gap:5px}.streamBtns .btn{font-size:11px;padding:6px 9px}}
 
-/* v6.6 — retro RPG pixel speech bubble; monthly hover only */
+/* v6.7 — narrow white pixel outline on a charcoal game dialogue panel. */
 .monthMemoBubble{
-  position:fixed;z-index:9000;box-sizing:border-box;pointer-events:none;
+  position:fixed;z-index:9000;isolation:isolate;box-sizing:border-box;pointer-events:none;
   width:max-content;max-width:min(280px,calc(100vw - 24px));min-width:140px;
-  padding:11px 13px;
-  border:3px solid #28252B;border-radius:0;
-  background:#FFF7FA;color:#28252B;
-  font-family:'DotGothic16',sans-serif;font-size:12px;line-height:1.8;
-  letter-spacing:.01em;white-space:pre-wrap;overflow-wrap:anywhere;overflow:visible;
-  outline:2px solid #F7EAF0;
-  box-shadow:0 0 0 4px #28252B,6px 6px 0 4px #BE92A8;
+  padding:13px 16px;background:transparent;color:#FFF9FC;
+  font-family:'DotGothic16',sans-serif;font-size:12px;line-height:1.75;
+  letter-spacing:.01em;white-space:pre-wrap;overflow-wrap:anywhere;
+  filter:drop-shadow(2px 3px 0 #8C46643D);
+}
+/* Three nested, beveled rectangles: charcoal / 2px white / charcoal.
+   Shape the panels, NOT the tooltip itself, so the tail is never cut off. */
+.monthMemoBubble::before,.monthMemoBubble::after,.monthMemoBubble .memoPixelInset{
+  content:"";position:absolute;pointer-events:none;
+}
+.monthMemoBubble::before{
+  inset:0;z-index:-3;background:#28252B;
+  clip-path:polygon(0 8px,4px 8px,4px 4px,8px 4px,8px 0,calc(100% - 8px) 0,
+    calc(100% - 8px) 4px,calc(100% - 4px) 4px,calc(100% - 4px) 8px,100% 8px,
+    100% calc(100% - 8px),calc(100% - 4px) calc(100% - 8px),
+    calc(100% - 4px) calc(100% - 4px),calc(100% - 8px) calc(100% - 4px),
+    calc(100% - 8px) 100%,8px 100%,8px calc(100% - 4px),
+    4px calc(100% - 4px),4px calc(100% - 8px),0 calc(100% - 8px));
+}
+.monthMemoBubble::after{
+  inset:2px;z-index:-2;background:#FFF9FC;
+  clip-path:polygon(0 6px,4px 6px,4px 2px,6px 2px,6px 0,calc(100% - 6px) 0,
+    calc(100% - 6px) 2px,calc(100% - 2px) 2px,calc(100% - 2px) 6px,100% 6px,
+    100% calc(100% - 6px),calc(100% - 2px) calc(100% - 6px),
+    calc(100% - 2px) calc(100% - 2px),calc(100% - 6px) calc(100% - 2px),
+    calc(100% - 6px) 100%,6px 100%,6px calc(100% - 2px),
+    2px calc(100% - 2px),2px calc(100% - 6px),0 calc(100% - 6px));
+}
+.monthMemoBubble .memoPixelInset{
+  inset:4px;z-index:-1;background:#28252B;
+  clip-path:polygon(0 4px,4px 4px,4px 0,calc(100% - 4px) 0,
+    calc(100% - 4px) 4px,100% 4px,100% calc(100% - 4px),
+    calc(100% - 4px) calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,
+    4px calc(100% - 4px),0 calc(100% - 4px));
 }
 .monthMemoBubble[hidden]{display:none!important}
 .monthMemoBubble .memoBubbleText{
-  display:block;max-height:min(235px,40vh);overflow:hidden;
+  position:relative;z-index:1;display:block;max-height:min(235px,40vh);overflow:hidden;
 }
-.monthMemoBubble::after{
-  /* A pixel-step arrow made from 4px square blocks, not a rotated triangle. */
-  content:"";position:absolute;left:var(--memo-tip-x,50%);bottom:-16px;
-  width:24px;height:16px;transform:translateX(-50%);
-  background:#28252B;
-  clip-path:polygon(
-    0 0,100% 0,100% 4px,20px 4px,20px 8px,16px 8px,
-    16px 12px,12px 12px,12px 16px,8px 16px,8px 12px,
-    4px 12px,4px 8px,0 8px
-  );
+/* Each tail is an independent, symmetrical 24px-wide pixel shape. */
+.monthMemoBubble .memoPixelTail{
+  position:absolute;left:var(--memo-tip-x,50%);bottom:-14px;
+  transform:translateX(-50%);width:24px;height:16px;z-index:2;
 }
-.monthMemoBubble.below::after{
-  bottom:auto;top:-16px;
-  transform:translateX(-50%) scaleY(-1);
+.monthMemoBubble .memoPixelTail::before,.monthMemoBubble .memoPixelTail::after,
+.monthMemoBubble .memoPixelTailFill{content:"";position:absolute;pointer-events:none}
+.monthMemoBubble .memoPixelTail::before{
+  inset:0;background:#28252B;
+  clip-path:polygon(0 0,100% 0,100% 4px,20px 4px,20px 8px,16px 8px,
+    16px 12px,14px 12px,14px 16px,10px 16px,10px 12px,8px 12px,
+    8px 8px,4px 8px,4px 4px,0 4px);
+}
+.monthMemoBubble .memoPixelTail::after{
+  left:2px;top:0;width:20px;height:13px;background:#FFF9FC;
+  clip-path:polygon(0 0,100% 0,100% 3px,16px 3px,16px 6px,12px 6px,
+    12px 10px,10px 10px,10px 13px,8px 13px,8px 10px,6px 10px,
+    6px 6px,4px 6px,4px 3px,0 3px);
+}
+.monthMemoBubble .memoPixelTailFill{
+  left:4px;top:0;width:16px;height:10px;background:#28252B;z-index:1;
+  clip-path:polygon(0 0,100% 0,100% 2px,12px 2px,12px 5px,10px 5px,
+    10px 8px,8px 8px,8px 10px,6px 10px,6px 8px,4px 8px,
+    4px 5px,2px 5px,2px 2px,0 2px);
+}
+.monthMemoBubble.below .memoPixelTail{
+  bottom:auto;top:-14px;transform:translateX(-50%) scaleY(-1);
 }
 @media(hover:none),(pointer:coarse){
   .monthMemoBubble{display:none!important}
@@ -574,6 +614,8 @@ function showMonthMemoBubble(dayButton,notes){
  }
  let content=notes.join('\n\n');
  if(content.length>220)content=content.slice(0,219).trimEnd()+'…';
+ if(!monthMemoBubble.querySelector('.memoPixelInset'))monthMemoBubble.append(ele('span','memoPixelInset'));
+ if(!monthMemoBubble.querySelector('.memoPixelTail')){const tail=ele('span','memoPixelTail');tail.append(ele('span','memoPixelTailFill'));monthMemoBubble.append(tail)}
  let bubbleText=monthMemoBubble.querySelector('.memoBubbleText');
  if(!bubbleText){bubbleText=ele('span','memoBubbleText');monthMemoBubble.append(bubbleText)}
  bubbleText.textContent=content;
@@ -583,7 +625,7 @@ function showMonthMemoBubble(dayButton,notes){
  const bubbleWidth=monthMemoBubble.offsetWidth;
  const left=Math.max(12,Math.min(window.innerWidth-bubbleWidth-12,rect.left+rect.width/2-bubbleWidth/2));
  monthMemoBubble.style.left=left+'px';
- const tipX=Math.max(13,Math.min(bubbleWidth-13,rect.left+rect.width/2-left));
+ const tipX=Math.max(20,Math.min(bubbleWidth-20,rect.left+rect.width/2-left));
  monthMemoBubble.style.setProperty('--memo-tip-x',tipX+'px');
  const bubbleHeight=monthMemoBubble.offsetHeight;
  const above=rect.top-bubbleHeight-12;
