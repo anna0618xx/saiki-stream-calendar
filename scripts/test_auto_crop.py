@@ -5,7 +5,7 @@ from pathlib import Path
 from unittest.mock import patch
 from PIL import Image
 from crop_screenshots import box_for_face,propose_boxes,crop_one
-from collect_public_frames import eligible,choose
+from collect_public_frames import eligible,choose,diagnostic_reason,CaptureError
 
 class AutoCropTests(unittest.TestCase):
  def test_face_crop_upper_body(self):
@@ -28,6 +28,13 @@ class AutoCropTests(unittest.TestCase):
    self.assertEqual(len(crop),1)
    self.assertTrue(Path(crop[0]['file']).is_file())
    self.assertTrue(crop[0]['requiresReview'])
+ def test_diagnostic_categories_do_not_leak_urls(self):
+  self.assertEqual(diagnostic_reason('ERROR: HTTP Error 403: Forbidden at https://sensitive.test/?token=SECRET'),'http_403')
+  self.assertEqual(diagnostic_reason('Sign in to confirm you are not a bot'),'bot_check')
+  self.assertEqual(diagnostic_reason('Requested format is not available'),'no_format')
+  self.assertEqual(diagnostic_reason('some unrelated error'),'other')
+  exc=CaptureError('yt_dlp','http_403')
+  self.assertEqual((exc.stage,exc.reason),('yt_dlp','http_403'))
  def test_only_public_self_ended(self):
   rec={'videoId':'aBcDE123_-x','channelType':'self','candidate':False,'status':'ended','available':True,
        'start':'2026-10-10T18:00:00Z','end':'2026-10-10T20:00:00Z'}
