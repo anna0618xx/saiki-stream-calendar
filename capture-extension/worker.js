@@ -41,7 +41,33 @@ async function seekVideo(tabId){
       }
       if(!(video.readyState>=2&&Math.abs(video.currentTime-target)<5))return {ok:false,reason:'frame_not_ready'};
       video.pause();
-      await pause(650);
+      // YouTube's seek operation and pause normally reveal the bottom progress bar.
+      // Hide only player controls/gradients, not the video frame or subtitles.
+      // This is limited to the temporary capture tab (closed after each frame).
+      const player=document.getElementById('movie_player')||video.closest('.html5-video-player');
+      if(!player)return {ok:false,reason:'player_not_found'};
+      if(!document.getElementById('saiki-capture-hide-controls')){
+        const style=document.createElement('style');
+        style.id='saiki-capture-hide-controls';
+        style.textContent=[
+          '#movie_player .ytp-chrome-bottom',
+          '#movie_player .ytp-chrome-top',
+          '#movie_player .ytp-gradient-bottom',
+          '#movie_player .ytp-gradient-top',
+          '#movie_player .ytp-progress-bar-container',
+          '#movie_player .ytp-progress-bar',
+          '#movie_player .ytp-bezel',
+          '#movie_player .ytp-pause-overlay',
+          '#movie_player .ytp-tooltip',
+          '#movie_player .ytp-cards-teaser',
+          '#movie_player .ytp-cards-button',
+          '#movie_player .ytp-ce-element'
+        ].join(',')+'{display:none!important;visibility:hidden!important;opacity:0!important;transition:none!important;animation:none!important}';
+        (document.head||document.documentElement).appendChild(style);
+      }
+      // Give YouTube and Chromium time to paint the frame without controls.
+      await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+      await pause(450);
       const bounds=video.getBoundingClientRect();
       let left=bounds.left,top=bounds.top,width=bounds.width,height=bounds.height;
       if(width<240||height<140)return {ok:false,reason:'video_not_visible'};
