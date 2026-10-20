@@ -1258,5 +1258,144 @@ window.addEventListener('resize',()=>{
  cancelAnimationFrame(calendarResizeFrame);
  calendarResizeFrame=requestAnimationFrame(()=>{if(mode==='week')render();else fitDesktopMonth()});
 },{passive:true});
+
+/* v7.4 — PC-only opt-in screenshot collector; draft images stay in this browser. */
+const CAPTURE_CHANNEL='saiki-pc-capture-v1',CAPTURE_INDEX_KEY='saiki-capture-pending-v1';
+let localCaptureIndex={};
+try{const stored=JSON.parse(localStorage.getItem(CAPTURE_INDEX_KEY)||'{}');if(stored&&typeof stored==='object')localCaptureIndex=stored}catch{}
+const saveCaptureIndex=()=>localStorage.setItem(CAPTURE_INDEX_KEY,JSON.stringify(localCaptureIndex));
+let captureItems=[],captureBusy=false,captureTimer=0,captureImportQueue=Promise.resolve();
+function missingScreenshotRows(){
+ const now=ymd(new Date());
+ const start=$('captureRange').value==='backfill'?'2026-08-20':ymd(new Date(Date.now()-14*86400000));
+ const end=$('captureRange').value==='backfill'?'2026-09-30':now;
+ const feed=archiveFeedCache?.streams||window.SAIKI_ARCHIVE_FEED?.streams||[];
+ const publicSelf=new Set(feed.filter(x=>x.channelType==='self'&&x.candidate===false&&x.status==='ended'&&x.available!==false).map(x=>x.videoId));
+ return records.filter(x=>{
+  const videoId=vid(x.url),day=x.date.slice(0,10);
+  if(!videoId||!publicSelf.has(videoId)||day<start||day>end)return false;
+  if(x.status==='live'||x.status==='scheduled')return false;
+  if(x.imageHidden||x.coverId||(x.photoIds||[]).length||x.image||originalOshiImage(x))return false;
+  return !localCaptureIndex[videoId]?.key;
+ }).sort((a,b)=>a.date.localeCompare(b.date));
+}
+function showCapturePreview(){
+ const all=missingScreenshotRows();
+ captureItems=all.slice(0,5).map(x=>({videoId:vid(x.url),date:x.date.slice(0,10),title:x.title}));
+ const box=$('capturePreview');box.replaceChildren();
+ box.append(ele('strong','',all.length+' 件が対象／今回 '+captureItems.length+' 件'));
+ if(!all.length)box.append(ele('p','',archiveFeedCache?'回収対象の未スクショ配信はありません。':'公開データ読込中です。少し待ってから再度開いてください。'));
+ for(const item of captureItems)box.append(ele('div','',item.date+'　'+item.title));
+ $('captureStart').disabled=captureBusy||!captureItems.length;
+ $('captureRange').disabled=captureBusy;
+ $('captureClose').disabled=captureBusy;
+}
+$('captureLaunch').onclick=()=>{
+ if(captureBusy)return;
+ $('captureRange').value='backfill';
+ $('captureProgress').textContent='';
+ showCapturePreview();
+ $('captureDialog').showModal();
+};
+$('captureRange').onchange=showCapturePreview;
+$('captureClose').onclick=()=>{if(!captureBusy)$('captureDialog').close()};
+$('captureStart').onclick=()=>{
+ if(captureBusy||!captureItems.length)return;
+ captureBusy=true;showCapturePreview();
+ $('captureProgress').textContent='PC拡張に接続中…';
+ window.postMessage({channel:CAPTURE_CHANNEL,direction:'site',type:'START',items:captureItems.map(x=>({videoId:x.videoId}))},location.origin);
+ clearTimeout(captureTimer);
+ captureTimer=setTimeout(()=>{
+  if(!captureBusy)return;
+  captureBusy=false;showCapturePreview();
+  $('captureProgress').textContent='拡張機能が応答しません。Chromeに拡張を導入し、ページを再読み込みしてください。';
+ },7000);
+};
+function renderLocalCaptureChoices(record,container){
+ const id=vid(record.url),pending=id&&localCaptureIndex[id];
+ if(!pending?.key)return;
+ const wrap=ele('div','captureLocalChoices');
+ wrap.append(ele('strong','','PCで撮影したスクショ候補'));
+ const image=ele('img');image.alt='PCで撮影した切り抜き候補';
+ if(blobUrls.has(pending.key))image.src=blobUrls.get(pending.key);
+ else imageGet(pending.key).then(blob=>{
+  if(!blob)return;
+  const url=URL.createObjectURL(blob);blobUrls.set(pending.key,url);image.src=url;
+ }).catch(console.warn);
+ wrap.append(image);
+ const buttons=ele('div','captureCandidateActions');
+ const adopt=ele('button','btn primary sm','この画像を採用');adopt.type='button';
+ adopt.onclick=()=>{
+  record.photoIds=[...new Set([...(record.photoIds||[]),pending.key])];
+  record.coverId=pending.key;record.imageHidden=false;
+  delete localCaptureIndex[id];saveCaptureIndex();save();renderEditorPhotos();
+ };
+ const discard=ele('button','btn sm','候補を破棄');discard.type='button';
+ discard.onclick=async()=>{
+  if(!confirm('この候補を破棄しますか？'))return;
+  delete localCaptureIndex[id];saveCaptureIndex();
+  await imageDrop(pending.key);
+  const url=blobUrls.get(pending.key);if(url){URL.revokeObjectURL(url);blobUrls.delete(pending.key)}
+  renderEditorPhotos();renderDetails();
+ };
+ buttons.append(adopt,discard);wrap.append(buttons);container.append(wrap);
+}
+async function storeCapturedCandidate(message){
+ const id=message.videoId,rect=message.rect,viewport=message.viewport;
+ if(!captureItems.some(x=>x.videoId===id))throw Error('対象外の動画');
+ if(!message.image?.startsWith('data:image/jpeg;base64,')||!rect||!viewport)throw Error('画像データが不正です');
+ if(message.image.length>8000000)throw Error('キャプチャが大きすぎます');
+ const img=new Image();
+ await new Promise((resolve,reject)=>{
+  img.onload=resolve;img.onerror=()=>reject(Error('撮影画像を開けません'));img.src=message.image;
+ });
+ let sx=rect.left*img.naturalWidth/viewport.width,sy=rect.top*img.naturalHeight/viewport.height;
+ let w=rect.width*img.naturalWidth/viewport.width,h=rect.height*img.naturalHeight/viewport.height;
+ if(!(w>200&&h>150&&sx>=0&&sy>=0&&sx+w<=img.naturalWidth+3&&sy+h<=img.naturalHeight+3))throw Error('映像の範囲を特定できません');
+ if(w/h>0.8){const cut=h*0.8;sx+=(w-cut)/2;w=cut}
+ else{const cut=w/0.8;sy+=(h-cut)*0.2;h=cut}
+ const canvas=document.createElement('canvas');canvas.width=640;canvas.height=800;
+ canvas.getContext('2d').drawImage(img,sx,sy,w,h,0,0,640,800);
+ const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/webp',0.85));
+ if(!blob||blob.size<1000||blob.size>2000000)throw Error('保存形式が不正です');
+ const key='capture-'+id+'-'+Date.now();
+ await imagePut(key,blob);
+ const previous=localCaptureIndex[id]?.key;
+ localCaptureIndex[id]={key,at:new Date().toISOString()};
+ saveCaptureIndex();blobUrls.set(key,URL.createObjectURL(blob));
+ if(previous&&previous!==key){
+  await imageDrop(previous);
+  const url=blobUrls.get(previous);if(url){URL.revokeObjectURL(url);blobUrls.delete(previous)}
+ }
+ if(editing)renderEditorPhotos();
+ renderDetails();
+}
+window.addEventListener('message',event=>{
+ if(event.source!==window||event.origin!==location.origin)return;
+ const data=event.data;
+ if(!data||data.channel!==CAPTURE_CHANNEL||data.direction!=='extension')return;
+ if(data.type==='STARTED'){
+  clearTimeout(captureTimer);captureTimer=0;
+  $('captureProgress').textContent='取得開始。YouTubeのタブを順番に表示します。';
+ }else if(data.type==='ERROR'){
+  clearTimeout(captureTimer);captureBusy=false;showCapturePreview();
+  $('captureProgress').textContent=data.message||'拡張機能でエラーが発生しました';
+ }else if(data.type==='PROGRESS'&&captureBusy){
+  const label=data.status==='running'?'再生・撮影中':data.status==='captured'?'撮影済み':'取得失敗';
+  $('captureProgress').textContent='['+data.index+'/'+data.total+'] '+label+' '+data.videoId+(data.reason?' ('+data.reason+')':'');
+ }else if(data.type==='IMAGE'&&captureBusy){
+  captureImportQueue=captureImportQueue.then(()=>storeCapturedCandidate(data)).catch(err=>{
+   $('captureProgress').textContent='画像のローカル保存失敗：'+err.message;
+   console.warn('Screenshot import error',err);
+  });
+ }else if(data.type==='FINISHED'&&captureBusy){
+  clearTimeout(captureTimer);
+  captureImportQueue.then(()=>{
+   captureBusy=false;showCapturePreview();
+   $('captureProgress').textContent='撮影 '+data.captured+' 件／取得失敗 '+data.failed+' 件。候補画像は各配信の「編集」から採用できます。';
+  });
+ }
+});
+
 render();refreshImages().catch(console.warn);initDriveControls();$('refreshGoods').onclick=loadGoodsCandidates;loadFeed();loadGoodsCandidates();loadPublicCrops()})();
 </script></body></html>
