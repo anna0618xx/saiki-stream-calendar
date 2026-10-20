@@ -65,9 +65,26 @@ async function seekVideo(tabId){
         ].join(',')+'{display:none!important;visibility:hidden!important;opacity:0!important;transition:none!important;animation:none!important}';
         (document.head||document.documentElement).appendChild(style);
       }
-      // Give YouTube and Chromium time to paint the frame without controls.
+      // Move the hover target away from the player without moving the real cursor.
+      // An invisible, pointer-active overlay stays in the temporary YouTube tab
+      // through captureVisibleTab; it does not paint over or crop the video.
+      let hoverShield=document.getElementById('saiki-capture-hover-shield');
+      if(!hoverShield){
+        hoverShield=document.createElement('div');
+        hoverShield.id='saiki-capture-hover-shield';
+        hoverShield.setAttribute('aria-hidden','true');
+        hoverShield.style.cssText='position:fixed!important;inset:0!important;z-index:2147483647!important;background:transparent!important;pointer-events:auto!important;cursor:default!important;';
+        document.documentElement.appendChild(hoverShield);
+      }
+      // YouTube may keep its controls visible based on a JavaScript hover flag.
+      // Notify the player of a pointer exit and enable its own autohide state.
+      player.dispatchEvent(new MouseEvent('mouseout',{bubbles:true,relatedTarget:hoverShield}));
+      player.dispatchEvent(new MouseEvent('mouseleave',{bubbles:false,relatedTarget:hoverShield}));
+      player.classList.add('ytp-autohide');
+      // The cursor may still physically be over the video. Keep the shield
+      // present and wait for YouTube's control hide animation to finish.
+      await pause(3000);
       await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
-      await pause(450);
       const bounds=video.getBoundingClientRect();
       let left=bounds.left,top=bounds.top,width=bounds.width,height=bounds.height;
       if(width<240||height<140)return {ok:false,reason:'video_not_visible'};
