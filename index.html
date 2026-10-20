@@ -701,6 +701,7 @@ async function loadPublicCrops(){
   }
   publicCropEntries=clean;
   if(editing)renderEditorPhotos();
+  renderDetails(); // Update the visible crop-ready shortcut when async candidates arrive.
  }catch(err){console.warn('Could not load optional public crop proposals',err)}
 }
 function renderPublicCropChoices(record,container){
