@@ -500,57 +500,57 @@ button:focus:not(:focus-visible){outline:none!important;box-shadow:none!importan
   }
 }
 
-/* v6.6 — desktop VIOLET NOIR. Keep data cards light, reserve neon for wayfinding. */
+/* v6.7 — desktop CHARCOAL x BURGUNDY: #8C4664 is the main color; neon pink is secondary. */
 @media (min-width:781px){
-  :root{--ink:#27202f;--muted:#6e6478;--blue:#843fa9;--border:#dfd4e7;--bg:#f5f1f7;--accent:#ef65b3}
-  body{background:linear-gradient(160deg,#f7f3fa 0%,#f0eaf5 100%);color:var(--ink)}
-  .header{background:linear-gradient(110deg,#1d1624 0%,#34203e 64%,#40214b 100%);border:1px solid #483250;box-shadow:0 4px 18px #1c102522}
-  .headerBrand h1{color:#fff5fb!important;text-shadow:0 0 14px #c25bb833}
-  .headerBrand h1::after{content:"";display:block;width:76px;height:3px;margin-top:9px;background:linear-gradient(90deg,#f75cb3,#9e59d2);border-radius:3px}
-  .headerGreeting{color:#dfd1e5}
-  .birthdayText b,.oshiText b{color:#ff90cf}
-  .birthdayText small,.oshiText small{color:#d2bfd9}
-  .headerActions .btn:not(.primary){background:#fff9ff;color:#33243f;border-color:#d4bcdd}
-  .btn.primary{background:#8139ac;border-color:#8139ac;color:#fff}
-  .btn.primary:hover{background:#6c279c}
-  .statsShell{border-color:#dccae6;border-left:4px solid #a749c6;box-shadow:0 3px 14px #2e193d0b}
+  :root{--ink:#28252B;--muted:#746B73;--blue:#8C4664;--border:#E4D9DF;--bg:#F6F4F5;--accent:#F45CAA}
+  body{background:linear-gradient(160deg,#FAF7F9 0%,#F3EEF2 100%);color:var(--ink)}
+  .header{background:linear-gradient(110deg,#28252B 0%,#3D2A35 48%,#8C4664 100%);border:1px solid #5D3849;box-shadow:0 4px 18px #281A2425}
+  .headerBrand h1{color:#fff8fc!important;text-shadow:0 0 14px #8C466444}
+  .headerBrand h1::after{content:"";display:block;width:76px;height:3px;margin-top:9px;background:linear-gradient(90deg,#F45CAA,#B976A2);border-radius:3px}
+  .headerGreeting{color:#EADAE3}
+  .birthdayText b,.oshiText b{color:#FFBEDD}
+  .birthdayText small,.oshiText small{color:#E7CFDD}
+  .headerActions .btn:not(.primary){background:#FFF9FC;color:#442B38;border-color:#D6B8C8}
+  .btn.primary{background:#8C4664;border-color:#8C4664;color:#fff}
+  .btn.primary:hover{background:#743750}
+  .statsShell{border-color:#E2D1DC;border-left:4px solid #8C4664;box-shadow:0 3px 14px #3921320b}
   .statsShell .stats{gap:9px}
-  .statsShell .stat{background:#f8f4fa;border-color:#eadfee}
-  .statsShell .stat b{color:#663185}
-  .statsShell #monthDuration{color:#ad388e}
-  .side,.main{background:#fff;border-color:#dacee1;box-shadow:0 2px 14px #2815310a}
-  .main{border-top:4px solid #9b45c1}
-  .side{border-top:4px solid #32203d}
-  .side .sideTop h2,.sideHeading,#selectedLabel{color:#382542}
-  .mainTop{padding-bottom:12px;border-bottom:2px solid #382640}
-  .nav h2{color:#302039}
-  .iconbtn{background:#302039;border-color:#302039;color:#fff}
-  .iconbtn:hover{background:#50305d!important;border-color:#50305d!important;color:#fff}
-  .switch{background:#f2eafa;border-color:#d6c5e4}
-  .switch button.active{background:#823cac!important;color:#fff!important}
-  .weekday{background:#30223d;color:#eee2f4;padding:6px 0;border-radius:5px}
-  .weekday:first-child{color:#ff91cd}
-  .weekday:nth-child(7){color:#c9a1ff}
-  .calendar .day:not(.has-photo){background:#f8f5fa;border-color:#e4d9e9}
-  .calendar .day.out:not(.has-photo){background:#f2eef5;color:#93899d}
-  .calendar .day.selected{outline:3px solid #e45fae;outline-offset:-3px}
-  .calendar .day.has-photo::before{background:linear-gradient(180deg,#160c2199 0%,#160c2111 38%,#180f2688 78%,#140d22d9 100%)}
-  .calendar .day .dayPhotoMeta{background:#f8e8f6;color:#732d87}
-  .calendar .day .daynum{color:#3b2751}
+  .statsShell .stat{background:#FAF6F9;border-color:#EDE1E8}
+  .statsShell .stat b{color:#8C4664}
+  .statsShell #monthDuration{color:#8C4664}
+  .side,.main{background:#fff;border-color:#E4D9DF;box-shadow:0 2px 14px #2815310a}
+  .main{border-top:4px solid #8C4664}
+  .side{border-top:4px solid #28252B}
+  .side .sideTop h2,.sideHeading,#selectedLabel{color:#45303B}
+  .mainTop{padding-bottom:12px;border-bottom:2px solid #28252B}
+  .nav h2{color:#28252B}
+  .iconbtn{background:#28252B;border-color:#28252B;color:#fff}
+  .iconbtn:hover{background:#8C4664!important;border-color:#8C4664!important;color:#fff}
+  .switch{background:#F6EDF2;border-color:#E0CBD6}
+  .switch button.active{background:#8C4664!important;color:#fff!important}
+  .weekday{background:#28252B;color:#F7EDF3;padding:6px 0;border-radius:5px}
+  .weekday:first-child{color:#F9ACD1}
+  .weekday:nth-child(7){color:#DAB9D0}
+  .calendar .day:not(.has-photo){background:#FCF8FA;border-color:#E4D9DF}
+  .calendar .day.out:not(.has-photo){background:#F3EFF2;color:#91808A}
+  .calendar .day.selected{outline:3px solid #F45CAA;outline-offset:-3px}
+  .calendar .day.has-photo::before{background:linear-gradient(180deg,#23101D88 0%,#23101D11 38%,#24131B88 78%,#1A111Bd9 100%)}
+  .calendar .day .dayPhotoMeta{background:#F8EAF1;color:#8C4664}
+  .calendar .day .daynum{color:#50313F}
   .calendar .day.has-photo .daynum,.calendar .day.has-photo.has-paid .daynum{color:#fff}
-  .calendar .day.has-paid,.calendar .day.has-stream.has-paid{border-color:#9a4abe!important}
+  .calendar .day.has-paid,.calendar .day.has-stream.has-paid{border-color:#8C4664!important}
   .calendar .day.has-paid.tag-chat{border-color:#69C968!important}
-  .calendar .day .eventMark{border-left-color:#9548bb;color:#4c365a;background:#f4eafb}
-  .weekScroll{border-color:#ddcfe4}
-  .weekCorner,.weekHeader{background:#30223d!important;color:#f6ecfb!important;border-bottom-color:#4c3658!important}
-  .weekHeader small{color:#e2b5e5!important}
-  .hourLabel{color:#746280!important}
-  .weekEvent{background:#f2e7f7!important;border-left-color:#9542bd!important;color:#2f233a!important}
-  .weekEvent.paid{border-color:#9645bc!important}
-  .weekEvent.active{outline-color:#dc54a5!important}
-  .weekEvent .timePill{color:#733599!important}
-  .weekColumn.todayCol{background-color:#f8effa}
-  .details{border-top-color:#cfb5db}
+  .calendar .day .eventMark{border-left-color:#8C4664;color:#593C4B;background:#F7EDF3}
+  .weekScroll{border-color:#E1D0DB}
+  .weekCorner,.weekHeader{background:#28252B!important;color:#F9EEF5!important;border-bottom-color:#584250!important}
+  .weekHeader small{color:#EABFD6!important}
+  .hourLabel{color:#8C4664!important}
+  .weekEvent{background:#F5E9F0!important;border-left-color:#8C4664!important;color:#382B34!important}
+  .weekEvent.paid{border-color:#8C4664!important}
+  .weekEvent.active{outline-color:#F45CAA!important}
+  .weekEvent .timePill{color:#8C4664!important}
+  .weekColumn.todayCol{background-color:#FAF1F6}
+  .details{border-top-color:#DDBFCE}
 }
 @media (min-width:1024px){
   /* Month view fits 4–6 week rows into remaining viewport height. */
