@@ -56,10 +56,10 @@ def diagnostic_reason(stderr):
         return 'http_429'
     if any(k in details for k in ('private video','members-only','requires payment','premium content')):
         return 'restricted'
-    if any(k in details for k in ('video unavailable','not available','not accessible')):
-        return 'unavailable'
     if any(k in details for k in ('requested format is not available','no video formats found')):
         return 'no_format'
+    if any(k in details for k in ('video unavailable','not available','not accessible')):
+        return 'unavailable'
     if any(k in details for k in ('timed out','temporary failure in name resolution','network is unreachable')):
         return 'network'
     return 'other'
