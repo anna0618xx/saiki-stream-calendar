@@ -7,3 +7,9 @@ oshi_backup*.zip
 oshi_*.webp
 .env
 __pycache__/
+# Locally generated screenshot crops: DO NOT COMMIT
+private-crop-preview/
+private-screenshots/
+raw-screenshots/
+.pytest_cache/
+*.secret.json
