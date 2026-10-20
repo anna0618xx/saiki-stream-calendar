@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T15:18:48.452601+00:00",
+  "generatedAt": "2026-10-20T08:19:24.419839+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -4952,6 +4952,25 @@
       "status": "ended",
       "url": "https://www.youtube.com/watch?v=Oh3ZwqxeGYI",
       "thumbnail": "https://i.ytimg.com/vi/Oh3ZwqxeGYI/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "rfynX0azvvE",
+      "title": "【ほぼ初見part02】伝説は地下を掘ったら出てくる【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-10-20",
+      "start": "2026-10-20T08:30:00Z",
+      "end": null,
+      "scheduledStart": "2026-10-20T08:30:00Z",
+      "actualStart": null,
+      "status": "scheduled",
+      "url": "https://www.youtube.com/watch?v=rfynX0azvvE",
+      "thumbnail": "https://i.ytimg.com/vi/rfynX0azvvE/mqdefault.jpg",
       "candidate": false,
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
