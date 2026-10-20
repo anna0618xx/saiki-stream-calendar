@@ -689,7 +689,7 @@ button:focus:not(:focus-visible){outline:none!important;box-shadow:none!importan
 <div class="capturePreview" id="capturePreview" aria-live="polite">対象を調べています…</div>
 <div class="captureProgress" id="captureProgress" role="status" aria-live="polite"></div>
 <p class="note">先にChromeへ専用拡張を導入してください。画像・ログイン情報はGitHubに送信しません。候補画像は採用するまでこのPC内に保存されます。</p>
-<div class="formbuttons"><button class="btn" type="button" id="captureClose">閉じる</button><button class="btn primary" type="button" id="captureStart">最大5件を回収</button></div>
+<div class="formbuttons"><button class="btn" type="button" id="captureClose">閉じる</button><button class="btn" type="button" id="captureTrial">まず1件を試す</button><button class="btn primary" type="button" id="captureStart">最大5件を回収</button></div>
 </dialog><dialog id="editor"><form id="form"><h2 id="dialogTitle">配信を追加</h2><label for="url">配信URL（任意・YouTube／ニコニコ／その他）</label><input type="url" id="url" placeholder="https://www.youtube.com/... または https://www.nicovideo.jp/..."><label for="title">配信タイトル</label><input type="text" id="title" maxlength="220" required placeholder="配信タイトルを入力"><label for="date">配信開始日時</label><input type="datetime-local" id="date" required><label style="display:flex;align-items:center;gap:8px;font-size:12px;margin:8px 0"><input type="checkbox" id="confirmedTime" style="width:auto;flex:0 0 auto"> 開始日時を確認済み（週次カレンダーに表示）</label><label for="duration">配信時間（分・仮でもOK）</label><input type="number" id="duration" min="1" max="1440" value="120" required><label for="channel">配信元チャンネル（コラボ先も登録可）</label><input type="text" id="channel" maxlength="100" placeholder="佐伯イッテツ / コラボ先チャンネルなど"><label for="streamTag">配信タグ（任意）</label><select id="streamTag"><option value="">通常</option><option value="special">SPECIAL</option><option value="chat">雑談</option></select><p class="note">タグは月表示の代表画像と週表示の配信カードに反映されます。特別配信や雑談は後から変更できます。</p><section class="editorDetailsGroup"><h3>貯金・メモ</h3><label class="check" for="editPaid"><input id="editPaid" type="checkbox"> この配信は貯金済み</label><label for="editAmount">1配信あたりの貯金額（円）</label><input type="number" id="editAmount" min="0" max="10000000" step="1" value="100" required><label for="editMemo">メモ（任意）</label><textarea id="editMemo" rows="3" placeholder="配信の感想や記録を書けます"></textarea></section><section class="editorDetailsGroup" id="editorPhotoSection"><h3>スクショ・代表画像</h3><p class="note">画像の追加・削除・代表変更はその場で保存されます。メインの「保存する」を押す前でも反映されます。</p><div id="editorPhotoTools"></div></section><button class="btn sm" type="button" id="fetchMetadata">URLから配信日時・タイトルを取得</button><p class="note" id="metadataNote">公開配信データにあるURLなら実際の日時も補完します。メン限は非公開のまま扱います。</p><div style="margin:12px 0;padding:12px;border:1px solid #e4d9df;border-radius:10px;background:#faf7f9"><strong style="font-size:13px">🔒 メン限の配信日時を取り込む</strong><p class="note">下のリンクをブックマークバーにドラッグして登録。YouTubeにログインし、動画URLを新しいタブで直接開いて読み込み後、ブックマークをクリック。動画によっては配信開始時刻が取得できないことがあります。</p><a id="memberTimeBookmarklet" href="#" style="display:inline-block;font-weight:700;color:#8c4664;text-decoration:underline;font-size:13px">📌 メン限日時取込（ブックマークへドラッグ）</a><p class="note">YouTube側が時刻を提供しない場合は取得できません。メン限URLや記録を公開データには追加しません。</p></div><div class="formbuttons"><button type="button" class="btn" id="cancel">キャンセル</button><button type="submit" class="btn primary">保存する</button></div></form></dialog><dialog id="scheduleDialog"><form id="scheduleForm"><h2 id="scheduleHeading">予定を追加</h2><label for="scType">種類</label><select id="scType"><option value="event">イベント</option><option value="goods">グッズ</option><option value="other">その他</option></select><label for="scTag">タグ（任意・配信と共通）</label><select id="scTag"><option value="">通常</option><option value="special">SPECIAL</option><option value="chat">雑談</option></select><label for="scTitle">予定・商品名</label><input id="scTitle" type="text" maxlength="180" required><div id="goodsFields"><label for="scReserveStart">予約開始（任意）</label><input type="datetime-local" id="scReserveStart"><label for="scDeadline">予約締切（任意）</label><input type="datetime-local" id="scDeadline"><label for="scRelease">発売日（任意）</label><input type="datetime-local" id="scRelease"><label class="check"><input id="scBooked" type="checkbox"> 予約済み・購入済み</label></div><div id="eventFields"><label for="scStart">開始日時</label><input type="datetime-local" id="scStart"><label for="scEnd">終了日時（任意）</label><input type="datetime-local" id="scEnd"><label class="check"><input id="scAllDay" type="checkbox"> 終日（時刻を指定しない）</label></div><div id="scPhotoArea"><label for="scPhoto">イベントの写真（任意）</label><input id="scPhoto" type="file" accept="image/png,image/jpeg,image/webp,image/gif"><img id="scPhotoPreview" class="schedulePhotoPreview" alt="イベント写真のプレビュー" hidden><div class="actions"><button type="button" class="btn sm" id="scPhotoRemove">写真を削除</button></div><p class="note">画像は軽量化してブラウザ内に保存します。バックアップJSONにも含まれます。</p></div><label for="scLocation">場所（任意）</label><input type="text" id="scLocation" maxlength="160"><label for="scLink">関連URL（任意）</label><input type="url" id="scLink" placeholder="https://..."><label for="scMemo">メモ（任意）</label><textarea id="scMemo" rows="3" maxlength="3000"></textarea><div class="formbuttons"><button class="btn warn" type="button" id="scDelete" hidden>削除</button><button class="btn" type="button" id="scCancel">キャンセル</button><button class="btn primary" type="submit">保存する</button></div></form></dialog>
 <section class="syncPanel" id="driveSyncPanel"><strong>☁ Google Drive 同期（任意）</strong><p style="font-size:12px">端末内では自動保存。Driveとの同期は接続後に手動で実行できます。別端末で復元する前に、必ず最新の内容を保存してください。</p><label style="font-size:12px">Google OAuth クライアントID（GitHub Pages公開後に設定）</label><input id="googleClientId" placeholder="xxxxxxxxxxxx.apps.googleusercontent.com" autocomplete="off"><div><button class="btn sm" type="button" id="driveConnect">Googleに接続</button><button class="btn sm" type="button" id="driveUpload">Driveへ保存</button><button class="btn sm" type="button" id="driveDownload">Driveから復元</button></div><small id="driveStatus">未接続。画像の編集はDriveなしでも使えます。</small><div id="driveSyncState" class="driveSyncState" role="status">☁ この端末のDrive保存履歴はまだありません</div></section><script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="data/streams.js"></script>
@@ -1287,6 +1287,7 @@ function showCapturePreview(){
  if(!all.length)box.append(ele('p','',archiveFeedCache?'回収対象の未スクショ配信はありません。':'公開データ読込中です。少し待ってから再度開いてください。'));
  for(const item of captureItems)box.append(ele('div','',item.date+'　'+item.title));
  $('captureStart').disabled=captureBusy||!captureItems.length;
+ $('captureTrial').disabled=captureBusy||!captureItems.length;
  $('captureRange').disabled=captureBusy;
  $('captureClose').disabled=captureBusy;
 }
@@ -1299,18 +1300,21 @@ $('captureLaunch').onclick=()=>{
 };
 $('captureRange').onchange=showCapturePreview;
 $('captureClose').onclick=()=>{if(!captureBusy)$('captureDialog').close()};
-$('captureStart').onclick=()=>{
+function startCaptureBatch(limit){
  if(captureBusy||!captureItems.length)return;
  captureBusy=true;showCapturePreview();
  $('captureProgress').textContent='PC拡張に接続中…';
- window.postMessage({channel:CAPTURE_CHANNEL,direction:'site',type:'START',items:captureItems.map(x=>({videoId:x.videoId}))},location.origin);
+ window.postMessage({channel:CAPTURE_CHANNEL,direction:'site',type:'START',items:captureItems.slice(0,limit).map(x=>({videoId:x.videoId}))},location.origin);
  clearTimeout(captureTimer);
  captureTimer=setTimeout(()=>{
   if(!captureBusy)return;
   captureBusy=false;showCapturePreview();
   $('captureProgress').textContent='拡張機能が応答しません。Chromeに拡張を導入し、ページを再読み込みしてください。';
  },7000);
-};
+}
+$('captureTrial').onclick=()=>startCaptureBatch(1);
+$('captureStart').onclick=()=>startCaptureBatch(5);
+$('captureDialog').addEventListener('cancel',e=>{if(captureBusy)e.preventDefault()});
 function renderLocalCaptureChoices(record,container){
  const id=vid(record.url),pending=id&&localCaptureIndex[id];
  if(!pending?.key)return;
