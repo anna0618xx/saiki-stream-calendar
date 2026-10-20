@@ -1328,7 +1328,7 @@ const CAPTURE_CHANNEL='saiki-pc-capture-v1',CAPTURE_INDEX_KEY='saiki-capture-pen
 let localCaptureIndex={};
 try{const stored=JSON.parse(localStorage.getItem(CAPTURE_INDEX_KEY)||'{}');if(stored&&typeof stored==='object')localCaptureIndex=stored}catch{}
 const saveCaptureIndex=()=>localStorage.setItem(CAPTURE_INDEX_KEY,JSON.stringify(localCaptureIndex));
-let captureItems=[],captureBusy=false,captureTimer=0,captureImportQueue=Promise.resolve();
+let captureItems=[],captureBusy=false,captureTimer=0,captureImportQueue=Promise.resolve(),captureSaved=0;
 function missingScreenshotRows(){
  const now=ymd(new Date());
  const start=$('captureRange').value==='backfill'?'2026-08-20':ymd(new Date(Date.now()-14*86400000));
@@ -1354,6 +1354,7 @@ function showCapturePreview(){
  $('captureTrial').disabled=captureBusy||!captureItems.length;
  $('captureRange').disabled=captureBusy;
  $('captureClose').disabled=captureBusy;
+ updateCaptureReviewButtons();
 }
 $('captureLaunch').onclick=()=>{
  if(captureBusy)return;
@@ -1366,7 +1367,7 @@ $('captureRange').onchange=showCapturePreview;
 $('captureClose').onclick=()=>{if(!captureBusy)$('captureDialog').close()};
 function startCaptureBatch(limit){
  if(captureBusy||!captureItems.length)return;
- captureBusy=true;showCapturePreview();
+ captureBusy=true;captureSaved=0;showCapturePreview();
  $('captureProgress').textContent='PC拡張に接続中…';
  window.postMessage({channel:CAPTURE_CHANNEL,direction:'site',type:'START',items:captureItems.slice(0,limit).map(x=>({videoId:x.videoId}))},location.origin);
  clearTimeout(captureTimer);
@@ -1587,9 +1588,12 @@ async function adoptCaptureCandidates(){
    }
   }
   updateCaptureReviewButtons();await renderCaptureReview();
+  captureReviewSaving=false;refreshReviewActions();
   $('captureReviewStatus').textContent=done.length+' 件をまとめて登録しました。'+(errors.length?'　未登録：'+errors.join('／'):'');
- }catch(error){$('captureReviewStatus').textContent='登録エラー：'+error.message}
- finally{captureReviewSaving=false;refreshReviewActions()}
+ }catch(error){
+  captureReviewSaving=false;refreshReviewActions();
+  $('captureReviewStatus').textContent='登録エラー：'+error.message;
+ }finally{captureReviewSaving=false}
 }
 $('captureReviewAdopt').onclick=adoptCaptureCandidates;
 async function storeCapturedCandidate(message){
@@ -1640,18 +1644,19 @@ window.addEventListener('message',event=>{
   const label=data.status==='running'?'再生・撮影中':data.status==='captured'?'撮影済み':'取得失敗';
   $('captureProgress').textContent='['+data.index+'/'+data.total+'] '+label+' '+data.videoId+(data.reason?' ('+data.reason+')':'');
  }else if(data.type==='IMAGE'&&captureBusy){
-  captureImportQueue=captureImportQueue.then(()=>storeCapturedCandidate(data)).catch(err=>{
+  captureImportQueue=captureImportQueue.then(async()=>{await storeCapturedCandidate(data);captureSaved++}).catch(err=>{
    $('captureProgress').textContent='画像のローカル保存失敗：'+err.message;
    console.warn('Screenshot import error',err);
   });
  }else if(data.type==='FINISHED'&&captureBusy){
   clearTimeout(captureTimer);
   captureImportQueue.then(()=>{
-   captureBusy=false;showCapturePreview();
-   $('captureProgress').textContent='撮影 '+data.captured+' 件／取得失敗 '+data.failed+' 件。候補画像は各配信の「編集」から採用できます。';
+   captureBusy=false;showCapturePreview();updateCaptureReviewButtons();
+   $('captureProgress').textContent='候補保存 '+captureSaved+' 件／撮影失敗 '+data.failed+' 件。候補をまとめて確認して登録できます。';
+   if(captureSaved>0)openCaptureReview();
   });
  }
 });
 
-render();refreshImages().catch(console.warn);initDriveControls();$('refreshGoods').onclick=loadGoodsCandidates;loadFeed();loadGoodsCandidates();loadPublicCrops()})();
+updateCaptureReviewButtons();render();refreshImages().catch(console.warn);initDriveControls();$('refreshGoods').onclick=loadGoodsCandidates;loadFeed();loadGoodsCandidates();loadPublicCrops()})();
 </script></body></html>
