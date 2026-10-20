@@ -37,22 +37,64 @@ def choose(records,processed,attempts,now,max_age_days=40,limit=1):
         if len(found)>=limit:break
     return found
 
+class CaptureError(RuntimeError):
+    """Sanitized capture failure; never expose signed playback URLs or raw stderr."""
+    def __init__(self,stage,reason):
+        self.stage=stage
+        self.reason=reason
+        super().__init__(stage+': '+reason)
+
+
+def diagnostic_reason(stderr):
+    # Only emit broad, non-sensitive categories into the public manifest / Actions.
+    details=(stderr or '').lower()
+    if any(k in details for k in ('sign in to confirm', 'confirm you\'re not a bot', 'bot detection', 'sign in to confirm that')):
+        return 'bot_check'
+    if any(k in details for k in ('http error 403','403 forbidden','status code 403')):
+        return 'http_403'
+    if any(k in details for k in ('http error 429','too many requests','rate limit')):
+        return 'http_429'
+    if any(k in details for k in ('private video','members-only','requires payment','premium content')):
+        return 'restricted'
+    if any(k in details for k in ('video unavailable','not available','not accessible')):
+        return 'unavailable'
+    if any(k in details for k in ('requested format is not available','no video formats found')):
+        return 'no_format'
+    if any(k in details for k in ('timed out','temporary failure in name resolution','network is unreachable')):
+        return 'network'
+    return 'other'
+
+
 def capture(video_id,target,seconds=600):
     if not VIDEO_ID.fullmatch(video_id):raise ValueError('Invalid public video ID')
     src='https://www.youtube.com/watch?v='+video_id
-    # Never print extracted signed streaming URLs.
-    pull=subprocess.run([
-      'yt-dlp','--no-playlist','--no-warnings','--no-progress','--no-cache-dir',
-      '--format','best[height<=720][ext=mp4]/best[height<=720]/best','--get-url',src
-    ],capture_output=True,text=True,timeout=45,check=False)
-    if pull.returncode or not pull.stdout.strip():raise RuntimeError('Public stream URL not accessible')
+    # Never print extracted signed streaming URLs or raw stderr.
+    try:
+        pull=subprocess.run([
+          'yt-dlp','--no-playlist','--no-warnings','--no-progress','--no-cache-dir',
+          '--format','best[height<=720][ext=mp4]/best[height<=720]/best','--get-url',src
+        ],capture_output=True,text=True,timeout=45,check=False)
+    except subprocess.TimeoutExpired as exc:
+        raise CaptureError('yt_dlp','timeout') from exc
+    except OSError as exc:
+        raise CaptureError('yt_dlp','launch_error') from exc
+    if pull.returncode or not pull.stdout.strip():
+        raise CaptureError('yt_dlp',diagnostic_reason(pull.stderr))
     playback=pull.stdout.strip().splitlines()[0]
-    if not playback.startswith('https://'):raise RuntimeError('Unsupported public playback URL')
-    result=subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-nostdin',
-           '-ss',str(seconds),'-i',playback,'-frames:v','1','-y',str(target)],
-           capture_output=True,timeout=90,check=False)
-    if result.returncode or not target.is_file() or target.stat().st_size<500:
-        raise RuntimeError('Could not extract public frame')
+    if not playback.startswith('https://'):
+        raise CaptureError('yt_dlp','unexpected_url')
+    try:
+        result=subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-nostdin',
+               '-ss',str(seconds),'-i',playback,'-frames:v','1','-y',str(target)],
+               capture_output=True,timeout=90,check=False)
+    except subprocess.TimeoutExpired as exc:
+        raise CaptureError('ffmpeg','timeout') from exc
+    except OSError as exc:
+        raise CaptureError('ffmpeg','launch_error') from exc
+    if result.returncode:
+        raise CaptureError('ffmpeg',diagnostic_reason(result.stderr.decode('utf-8',errors='replace')))
+    if not target.is_file() or target.stat().st_size<500:
+        raise CaptureError('ffmpeg','no_frame')
 
 def main():
     p=argparse.ArgumentParser()
@@ -93,9 +135,12 @@ def main():
             changed=True
             print('Prepared review-only public crop candidates:',video,len(options))
         except (OSError,RuntimeError,ValueError,subprocess.TimeoutExpired) as exc:
-            attempts[video]={'at':now.isoformat(),'result':'unavailable'}
+            stage=exc.stage if isinstance(exc,CaptureError) else 'crop'
+            reason=exc.reason if isinstance(exc,CaptureError) else 'processing_error'
+            # The attempt index is publicly deployed: never store original subprocess output.
+            attempts[video]={'at':now.isoformat(),'result':'unavailable','stage':stage,'reason':reason}
             changed=True
-            print('Public capture unavailable:',video,type(exc).__name__)
+            print('Public capture unavailable:',video,'stage='+stage,'reason='+reason)
     if not changed:
         print('No new public frame crops. Manifest unchanged.')
         return
