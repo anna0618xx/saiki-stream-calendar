@@ -402,10 +402,11 @@ button:focus:not(:focus-visible){outline:none!important;box-shadow:none!importan
   padding:11px 13px;border:2px solid #28252B;border-radius:3px;
   background:#FFF7FA;color:#28252B;
   font-family:'DotGothic16',sans-serif;font-size:12px;line-height:1.7;
-  white-space:pre-wrap;overflow-wrap:anywhere;max-height:min(270px,42vh);overflow:hidden;
+  white-space:pre-wrap;overflow-wrap:anywhere;overflow:visible;
   box-shadow:4px 4px 0 #8C466438;
 }
 .monthMemoBubble[hidden]{display:none!important}
+.monthMemoBubble .memoBubbleText{display:block;max-height:min(235px,40vh);overflow:hidden}
 .monthMemoBubble::after{
   content:"";position:absolute;left:var(--memo-tip-x,50%);bottom:-8px;
   width:11px;height:11px;transform:translateX(-50%) rotate(45deg);
@@ -561,7 +562,9 @@ function showMonthMemoBubble(dayButton,notes){
  }
  let content=notes.join('\n\n');
  if(content.length>220)content=content.slice(0,219).trimEnd()+'…';
- monthMemoBubble.textContent=content;
+ let bubbleText=monthMemoBubble.querySelector('.memoBubbleText');
+ if(!bubbleText){bubbleText=ele('span','memoBubbleText');monthMemoBubble.append(bubbleText)}
+ bubbleText.textContent=content;
  monthMemoBubble.hidden=false;
  monthMemoBubble.classList.remove('below');
  const rect=dayButton.getBoundingClientRect();
