@@ -1379,62 +1379,250 @@ function startCaptureBatch(limit){
 $('captureTrial').onclick=()=>startCaptureBatch(1);
 $('captureStart').onclick=()=>startCaptureBatch(5);
 $('captureDialog').addEventListener('cancel',e=>{if(captureBusy)e.preventDefault()});
+
+function updateCaptureReviewButtons(){
+ const count=Object.values(localCaptureIndex).filter(x=>x?.key).length;
+ $('captureReviewLaunch').hidden=!count;
+ $('captureReviewFromCollector').hidden=!count;
+ $('captureReviewLaunch').textContent='🖼 候補をまとめて確認'+(count?' ('+count+')':'');
+ $('captureReviewFromCollector').textContent='候補をまとめて確認 ('+count+')';
+ $('captureReviewFromCollector').disabled=captureBusy;
+}
+function captureRecord(videoId){
+ return records.find(r=>vid(r.url)===videoId)||null;
+}
+function captureCropRect(image,pending){
+ const w=image.naturalWidth,h=image.naturalHeight;
+ const fitW=Math.min(w,h*.8),fitH=fitW/.8;
+ const zoom=Math.max(1,Math.min(8,Number(pending.crop?.zoom)||1));
+ const cw=fitW/zoom,ch=fitH/zoom;
+ const minX=cw/(2*w),minY=ch/(2*h);
+ const x=Math.max(minX,Math.min(1-minX,Number(pending.crop?.x) || .5));
+ const y=Math.max(minY,Math.min(1-minY,Number(pending.crop?.y) || .5));
+ return {sx:x*w-cw/2,sy:y*h-ch/2,w:cw,h:ch,x,y,zoom};
+}
+function saveReviewCrop(videoId,pending,crop){
+ pending.crop={x:crop.x,y:crop.y,zoom:crop.zoom};
+ saveCaptureIndex();
+}
+async function captureCandidateImage(key){
+ const blob=await imageGet(key);
+ if(!blob)throw Error('候補の元画像がこのPCにありません');
+ let url=blobUrls.get(key);
+ if(!url){url=URL.createObjectURL(blob);blobUrls.set(key,url)}
+ const image=new Image();
+ image.src=url;
+ try{await image.decode()}catch{throw Error('元画像を開けません')}
+ if(!image.naturalWidth||!image.naturalHeight)throw Error('元画像のサイズが不正です');
+ return image;
+}
+function captureCropBlob(image,pending){
+ const box=captureCropRect(image,pending);
+ const canvas=document.createElement('canvas');
+ canvas.width=640;canvas.height=800;
+ canvas.getContext('2d').drawImage(image,box.sx,box.sy,box.w,box.h,0,0,640,800);
+ return new Promise((resolve,reject)=>canvas.toBlob(blob=>
+  blob&&blob.size>1000&&blob.size<=2000000?resolve(blob):reject(Error('切り抜きを保存できません')),'image/webp',.89));
+}
 function renderLocalCaptureChoices(record,container){
  const id=vid(record.url),pending=id&&localCaptureIndex[id];
  if(!pending?.key)return;
  const wrap=ele('div','captureLocalChoices');
  wrap.append(ele('strong','','PCで撮影したスクショ候補'));
- const image=ele('img');image.alt='PCで撮影した切り抜き候補';
- if(blobUrls.has(pending.key))image.src=blobUrls.get(pending.key);
- else imageGet(pending.key).then(blob=>{
-  if(!blob)return;
-  const url=URL.createObjectURL(blob);blobUrls.set(pending.key,url);image.src=url;
- }).catch(console.warn);
- wrap.append(image);
- const buttons=ele('div','captureCandidateActions');
- const adopt=ele('button','btn primary sm','この画像を採用');adopt.type='button';
- adopt.onclick=()=>{
-  record.photoIds=[...new Set([...(record.photoIds||[]),pending.key])];
-  record.coverId=pending.key;record.imageHidden=false;
-  delete localCaptureIndex[id];saveCaptureIndex();save();renderEditorPhotos();
+ wrap.append(ele('p','cropReviewNote',pending.fullFrame===true?'動画全体を保存済み。ズームとトリミングを調整してから登録できます。':'以前取得した4:5候補です。動画全体から調整するには再取得が必要です。'));
+ const button=ele('button','btn primary sm','🖼 一括レビューでトリミング');
+ button.type='button';button.onclick=()=>{
+  $('editor').close();openCaptureReview();
  };
- const discard=ele('button','btn sm','候補を破棄');discard.type='button';
- discard.onclick=async()=>{
-  if(!confirm('この候補を破棄しますか？'))return;
-  delete localCaptureIndex[id];saveCaptureIndex();
-  await imageDrop(pending.key);
-  const url=blobUrls.get(pending.key);if(url){URL.revokeObjectURL(url);blobUrls.delete(pending.key)}
-  renderEditorPhotos();renderDetails();
- };
- buttons.append(adopt,discard);wrap.append(buttons);container.append(wrap);
+ wrap.append(button);container.append(wrap);
 }
+async function renderCaptureReview(){
+ const panel=$('captureReviewList');panel.replaceChildren();
+ const entries=Object.entries(localCaptureIndex).filter(([id,p])=>/^[\w-]{11}$/.test(id)&&p?.key)
+  .sort((a,b)=>(captureRecord(a[0])?.date||'').localeCompare(captureRecord(b[0])?.date||''));
+ if(!entries.length){
+  panel.append(ele('p','note','保存済みのスクショ候補はまだありません。「スクショ回収」から取得してください。'));
+  refreshReviewActions();return;
+ }
+ for(const [id,pending] of entries){
+  const record=captureRecord(id);
+  const card=ele('div','cropReviewCard');
+  const heading=ele('label','cropReviewTitle');
+  const select=ele('input');
+  select.type='checkbox';select.checked=pending.selected!==false;
+  const title=ele('span');
+  title.append(ele('strong','',record?.title||'動画 '+id));
+  title.append(ele('small','',(record?.date.slice(0,10)||'日付不明')+(pending.fullFrame?'　／　元画像あり':'　／　旧版の切り抜き済み候補')));
+  heading.append(select,title);card.append(heading);
+  select.onchange=()=>{pending.selected=select.checked;saveCaptureIndex();refreshReviewActions()};
+  const grid=ele('div','cropReviewContent'),stage=ele('div','cropReviewStage'),raw=ele('img'),frame=ele('div','cropReviewFrame');
+  raw.alt='撮影した動画の全体画像';raw.draggable=false;
+  stage.append(raw,frame);
+  const result=ele('div','cropReviewResult'),canvas=ele('canvas');
+  canvas.width=320;canvas.height=400;
+  result.append(canvas,ele('small','','4:5 仕上がりプレビュー'));
+  grid.append(stage,result);card.append(grid);
+  const controls=ele('div','cropReviewTools');
+  const zoomLabel=ele('label','','ズーム');
+  const slider=ele('input');slider.type='range';slider.min='1';slider.max='8';slider.step='0.1';
+  slider.value=String(Math.max(1,Math.min(8,Number(pending.crop?.zoom)||1)));
+  const amount=ele('span','cropReviewNote',Number(slider.value).toFixed(1)+'×');
+  const reset=ele('button','btn sm','リセット');reset.type='button';
+  const helper=ele('p','cropReviewNote','白枠をドラッグして位置調整。ズームで小さい立ち絵も拡大できます。');
+  controls.append(zoomLabel,slider,amount,reset);
+  card.append(controls,helper);panel.append(card);
+  try{
+   const image=await captureCandidateImage(pending.key);
+   if(!card.isConnected)continue;
+   raw.src=image.src;stage.style.aspectRatio=image.naturalWidth+'/'+image.naturalHeight;
+   const draw=()=>{
+    const rect=captureCropRect(image,pending);
+    frame.style.left=100*rect.sx/image.naturalWidth+'%';
+    frame.style.top=100*rect.sy/image.naturalHeight+'%';
+    frame.style.width=100*rect.w/image.naturalWidth+'%';
+    frame.style.height=100*rect.h/image.naturalHeight+'%';
+    const ctx=canvas.getContext('2d');ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(image,rect.sx,rect.sy,rect.w,rect.h,0,0,canvas.width,canvas.height);
+    amount.textContent=rect.zoom.toFixed(1)+'×';
+   };
+   const setLocation=event=>{
+    const bounds=stage.getBoundingClientRect();
+    if(bounds.width<=0||bounds.height<=0)return;
+    const x=(event.clientX-bounds.left)/bounds.width,y=(event.clientY-bounds.top)/bounds.height;
+    const crop=captureCropRect(image,{crop:{x,y,zoom:pending.crop?.zoom||1}});
+    saveReviewCrop(id,pending,crop);draw();
+   };
+   stage.addEventListener('pointerdown',e=>{
+    if(e.button!==0)return;
+    stage.setPointerCapture(e.pointerId);setLocation(e);e.preventDefault();
+   });
+   stage.addEventListener('pointermove',e=>{if(stage.hasPointerCapture(e.pointerId))setLocation(e)});
+   slider.oninput=()=>{
+    const crop=captureCropRect(image,{crop:{x:pending.crop?.x??.5,y:pending.crop?.y??.5,zoom:Number(slider.value)}});
+    saveReviewCrop(id,pending,crop);draw();
+   };
+   reset.onclick=()=>{
+    slider.value='1';saveReviewCrop(id,pending,{x:.5,y:.5,zoom:1});draw();
+   };
+   const initial=captureCropRect(image,pending);
+   saveReviewCrop(id,pending,initial);draw();
+  }catch(error){
+   card.append(ele('p','cropReviewError',error.message));
+   select.checked=false;select.disabled=true;
+   pending.selected=false;saveCaptureIndex();
+  }
+ }
+ refreshReviewActions();
+}
+function refreshReviewActions(){
+ const selected=Object.values(localCaptureIndex).filter(p=>p?.key&&p.selected!==false).length;
+ $('captureReviewAdopt').disabled=!selected||captureReviewSaving;
+ $('captureReviewDiscard').disabled=!selected||captureReviewSaving;
+ $('captureReviewClose').disabled=captureReviewSaving;
+ $('captureReviewStatus').textContent=selected?'選択中 '+selected+' 件　※登録まで配信の代表画像は変更しません':'採用したい画像にチェックを入れてください。';
+}
+let captureReviewSaving=false;
+function openCaptureReview(){
+ if(captureBusy)return;
+ updateCaptureReviewButtons();
+ if($('captureDialog').open)$('captureDialog').close();
+ if($('editor').open)$('editor').close();
+ if(!$('captureReviewDialog').open)$('captureReviewDialog').showModal();
+ renderCaptureReview().catch(err=>{$('captureReviewStatus').textContent='レビュー表示失敗：'+err.message});
+}
+$('captureReviewLaunch').onclick=openCaptureReview;
+$('captureReviewFromCollector').onclick=openCaptureReview;
+$('captureReviewClose').onclick=()=>{if(!captureReviewSaving)$('captureReviewDialog').close()};
+$('captureReviewDialog').addEventListener('cancel',e=>{if(captureReviewSaving)e.preventDefault()});
+async function discardCaptureCandidates(){
+ const chosen=Object.entries(localCaptureIndex).filter(([id,p])=>p?.key&&p.selected!==false);
+ if(!chosen.length||captureReviewSaving)return;
+ if(!confirm('選択した '+chosen.length+' 件の候補画像を破棄しますか？ 配信記録と貯金には影響しません。'))return;
+ captureReviewSaving=true;refreshReviewActions();
+ try{
+  for(const [id,p] of chosen){
+   await imageDrop(p.key);
+   const url=blobUrls.get(p.key);if(url){URL.revokeObjectURL(url);blobUrls.delete(p.key)}
+   delete localCaptureIndex[id];
+  }
+  saveCaptureIndex();updateCaptureReviewButtons();renderDetails();
+  await renderCaptureReview();
+ }catch(error){$('captureReviewStatus').textContent='破棄に失敗しました：'+error.message}
+ finally{captureReviewSaving=false;refreshReviewActions()}
+}
+$('captureReviewDiscard').onclick=discardCaptureCandidates;
+async function adoptCaptureCandidates(){
+ if(captureReviewSaving)return;
+ const chosen=Object.entries(localCaptureIndex).filter(([id,p])=>p?.key&&p.selected!==false);
+ if(!chosen.length)return;
+ captureReviewSaving=true;refreshReviewActions();
+ const done=[],errors=[];
+ try{
+  for(const [id,p] of chosen){
+   const record=captureRecord(id);
+   if(!record){errors.push(id+'：対応する配信記録がありません');continue}
+   if(record.coverId||(record.photoIds||[]).length){errors.push(id+'：既存のスクショがあるため上書きしません');continue}
+   try{
+    const image=await captureCandidateImage(p.key),blob=await captureCropBlob(image,p);
+    const key='pic-'+(crypto.randomUUID?.()||Date.now()+'-'+Math.random());
+    await imagePut(key,blob);
+    blobUrls.set(key,URL.createObjectURL(blob));
+    record.photoIds=[...new Set([...(record.photoIds||[]),key])];
+    record.coverId=key;record.imageHidden=false;
+    done.push({id,sourceKey:p.key});
+   }catch(err){errors.push(id+'：'+err.message)}
+  }
+  if(done.length){
+   save(); // Commit record references before removing their recoverable source frames.
+   for(const item of done){
+    delete localCaptureIndex[item.id];
+   }
+   saveCaptureIndex();
+   for(const item of done){
+    try{
+     await imageDrop(item.sourceKey);
+     const url=blobUrls.get(item.sourceKey);
+     if(url){URL.revokeObjectURL(url);blobUrls.delete(item.sourceKey)}
+    }catch(err){console.warn('Could not release adopted source frame',err)}
+   }
+  }
+  updateCaptureReviewButtons();await renderCaptureReview();
+  $('captureReviewStatus').textContent=done.length+' 件をまとめて登録しました。'+(errors.length?'　未登録：'+errors.join('／'):'');
+ }catch(error){$('captureReviewStatus').textContent='登録エラー：'+error.message}
+ finally{captureReviewSaving=false;refreshReviewActions()}
+}
+$('captureReviewAdopt').onclick=adoptCaptureCandidates;
 async function storeCapturedCandidate(message){
  const id=message.videoId,rect=message.rect,viewport=message.viewport;
  if(!captureItems.some(x=>x.videoId===id))throw Error('対象外の動画');
  if(!message.image?.startsWith('data:image/jpeg;base64,')||!rect||!viewport)throw Error('画像データが不正です');
  if(message.image.length>8000000)throw Error('キャプチャが大きすぎます');
- const img=new Image();
+ const image=new Image();
  await new Promise((resolve,reject)=>{
-  img.onload=resolve;img.onerror=()=>reject(Error('撮影画像を開けません'));img.src=message.image;
+  image.onload=resolve;image.onerror=()=>reject(Error('撮影画像を開けません'));image.src=message.image;
  });
- let sx=rect.left*img.naturalWidth/viewport.width,sy=rect.top*img.naturalHeight/viewport.height;
- let w=rect.width*img.naturalWidth/viewport.width,h=rect.height*img.naturalHeight/viewport.height;
- if(!(w>200&&h>150&&sx>=0&&sy>=0&&sx+w<=img.naturalWidth+3&&sy+h<=img.naturalHeight+3))throw Error('映像の範囲を特定できません');
- if(w/h>0.8){const cut=h*0.8;sx+=(w-cut)/2;w=cut}
- else{const cut=w/0.8;sy+=(h-cut)*0.2;h=cut}
- const canvas=document.createElement('canvas');canvas.width=640;canvas.height=800;
- canvas.getContext('2d').drawImage(img,sx,sy,w,h,0,0,640,800);
- const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/webp',0.85));
- if(!blob||blob.size<1000||blob.size>2000000)throw Error('保存形式が不正です');
+ let sx=rect.left*image.naturalWidth/viewport.width,sy=rect.top*image.naturalHeight/viewport.height;
+ let w=rect.width*image.naturalWidth/viewport.width,h=rect.height*image.naturalHeight/viewport.height;
+ if(!(w>200&&h>150&&sx>=0&&sy>=0&&sx+w<=image.naturalWidth+3&&sy+h<=image.naturalHeight+3))throw Error('映像の範囲を特定できません');
+ const canvas=document.createElement('canvas'),limit=1280,scale=Math.min(1,limit/w);
+ canvas.width=Math.max(1,Math.round(w*scale));
+ canvas.height=Math.max(1,Math.round(h*scale));
+ canvas.getContext('2d').drawImage(image,sx,sy,w,h,0,0,canvas.width,canvas.height);
+ const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/webp',.91));
+ if(!blob||blob.size<1000||blob.size>3500000)throw Error('元画像の保存形式が不正です');
  const key='capture-'+id+'-'+Date.now();
  await imagePut(key,blob);
  const previous=localCaptureIndex[id]?.key;
- localCaptureIndex[id]={key,at:new Date().toISOString()};
+ localCaptureIndex[id]={key,at:new Date().toISOString(),fullFrame:true,crop:{x:.5,y:.5,zoom:1},selected:true};
  saveCaptureIndex();blobUrls.set(key,URL.createObjectURL(blob));
  if(previous&&previous!==key){
-  await imageDrop(previous);
-  const url=blobUrls.get(previous);if(url){URL.revokeObjectURL(url);blobUrls.delete(previous)}
+  // Only replace an old unadopted candidate after the new image is safely persisted.
+  try{
+   await imageDrop(previous);
+   const url=blobUrls.get(previous);if(url){URL.revokeObjectURL(url);blobUrls.delete(previous)}
+  }catch(error){console.warn('Old capture candidate cleanup failed',error)}
  }
+ updateCaptureReviewButtons();
  if(editing)renderEditorPhotos();
  renderDetails();
 }
