@@ -10,7 +10,7 @@
     const msg=event.data;
     if(!msg||msg.channel!==CHANNEL||msg.direction!=='site'||msg.type!=='START')return;
     const list=Array.isArray(msg.items)?msg.items:[];
-    if(list.length<1||list.length>5||!list.every(x=>x&&/^[A-Za-z0-9_-]{11}$/.test(x.videoId||''))){
+    if(list.length<1||list.length>7||!list.every(x=>x&&/^[A-Za-z0-9_-]{11}$/.test(x.videoId||''))){
       emit('ERROR',{message:'対象の動画IDを確認してください'});return;
     }
     chrome.runtime.sendMessage({type:'BATCH',items:list.map(x=>({videoId:x.videoId}))},reply=>{
