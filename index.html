@@ -1197,6 +1197,14 @@ $('scCancel').onclick=()=>$('scheduleDialog').close();
 $('scDelete').onclick=()=>{if(scheduleEditing&&confirm('この予定と関連する日付を削除しますか？')){schedules=schedules.filter(x=>x.id!==scheduleEditing.id);$('scheduleDialog').close();saveSchedules()}};
 $('scheduleForm').onsubmit=e=>{e.preventDefault();const type=$('scType').value,title=$('scTitle').value.trim();if(!title)return;const entry={id:scheduleEditing?.id||newId(),type,tag:$('scTag').value,title,reserveStart:$('scReserveStart').value,deadline:$('scDeadline').value,release:$('scRelease').value,booked:$('scBooked').checked,start:$('scStart').value,end:$('scEnd').value,allDay:$('scAllDay').checked,location:$('scLocation').value.trim(),link:$('scLink').value.trim(),memo:$('scMemo').value.trim(),photo:type==='event'?schedulePhotoDraft:''};if(type==='goods'&&!entry.reserveStart&&!entry.deadline&&!entry.release){alert('予約開始・予約締切・発売日のいずれかを入力してください。');return}if(type!=='goods'&&!entry.start){alert('開始日時を入力してください。');return}if(type!=='goods'&&entry.end&&entry.end<entry.start){alert('終了日時は開始日時以降にしてください。');return}if(scheduleEditing){schedules=schedules.map(x=>x.id===entry.id?entry:x)}else schedules.push(entry);$('scheduleDialog').close();saveSchedules()};
 
+function applyMetadataStart(utc,source){
+ const value=localISO(utc);
+ if(!value)return false;
+ if(editing&&$('date').value!==value&&!confirm('開始日時を更新しますか？\n現在：'+$('date').value.replace('T',' ')+'\n'+source+'：'+value.replace('T',' ')+'\n\nキャンセルすると手入力した開始日時を維持します。'))return false;
+ $('date').value=value;
+ $('confirmedTime').checked=true;
+ return true;
+}
 function applyMetadataMinutes(minutes,source){
  if(!Number.isInteger(minutes)||minutes<1||minutes>1440)return false;
  const currentMinutes=Number($('duration').value);
@@ -1210,10 +1218,7 @@ function fillArchiveForm(item){
  const start=item.actualStart||item.start||item.scheduledStart,end=item.actualEnd||item.end;
  if(item.title)$('title').value=item.title;
  if(item.channel)$('channel').value=item.channel;
- if(start){
-  const local=localISO(start);
-  if(local){$('date').value=local;$('confirmedTime').checked=true}
- }
+ if(start)applyMetadataStart(start,'公開配信データ');
  if(start&&end){
   const minutes=Math.round((new Date(end)-new Date(start))/60000);
   applyMetadataMinutes(minutes,'公開配信データ');
@@ -1237,14 +1242,7 @@ $('fetchMetadata').onclick=async()=>{
    if(info?.videoId!==id)throw Error('取得した動画IDが一致しません');
    if(info.title)$('title').value=info.title;
    if(info.channel)$('channel').value=info.channel;
-   if(info.start){
-    const local=localISO(info.start);
-    if(local){
-     if(!editing||$('date').value===local||confirm('開始日時をYouTubeで取得した '+local.replace('T',' ')+' に変更しますか？')){
-      $('date').value=local;$('confirmedTime').checked=true;
-     }
-    }
-   }
+   if(info.start)applyMetadataStart(info.start,'YouTube');
    let seconds=Number(info.durationSeconds);
    if(!(Number.isFinite(seconds)&&seconds>0)&&info.start&&info.end){
     seconds=(Date.parse(info.end)-Date.parse(info.start))/1000;
