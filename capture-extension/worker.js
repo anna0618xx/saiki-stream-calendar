@@ -124,7 +124,97 @@ async function captureOne(siteTab,videoId){
     if(tab?.id)try{await chrome.tabs.remove(tab.id)}catch{}
   }
 }
+
+/* Opt-in metadata reading. Returns only public video fields (no login state). */
+async function metadataForVideo(siteTab,videoId){
+  let tab;
+  try{
+    tab=await chrome.tabs.create({
+      windowId:siteTab.windowId,active:true,
+      url:'https://www.youtube.com/watch?v='+encodeURIComponent(videoId)
+    });
+    if(!await waitForNavigation(tab.id))throw Error('youtube_navigation_failed');
+    await sleep(800);
+    const [injected]=await chrome.scripting.executeScript({
+      target:{tabId:tab.id},world:'MAIN',args:[videoId],
+      func:async(expectedId)=>{
+        const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+        const validTime=value=>value&&Number.isFinite(Date.parse(value))?value:null;
+        function extract(){
+          const player=document.getElementById('movie_player');
+          const playerHost=document.querySelector('ytd-player');
+          const responses=[];
+          try{if(typeof player?.getPlayerResponse==='function')responses.push(player.getPlayerResponse())}catch{}
+          try{if(typeof playerHost?.getPlayerResponse==='function')responses.push(playerHost.getPlayerResponse())}catch{}
+          try{if(playerHost?.player_?.getPlayerResponse)responses.push(playerHost.player_.getPlayerResponse())}catch{}
+          if(window.ytInitialPlayerResponse)responses.push(window.ytInitialPlayerResponse);
+          for(const response of responses){
+            const detail=response?.videoDetails;
+            if(!detail||detail.videoId!==expectedId)continue;
+            const live=response?.microformat?.playerMicroformatRenderer?.liveBroadcastDetails;
+            const length=Number(detail.lengthSeconds);
+            const elem=document.querySelector('video.html5-main-video');
+            const fallback=Number(elem?.duration);
+            const seconds=Number.isFinite(length)&&length>0?length:Number.isFinite(fallback)&&fallback>0?fallback:0;
+            const renderer=response?.microformat?.playerMicroformatRenderer;
+            return {
+              videoId:expectedId,
+              title:String(detail.title||'').slice(0,220),
+              channel:String(detail.author||renderer?.ownerChannelName||'').slice(0,100),
+              durationSeconds:Math.round(seconds),
+              start:validTime(live?.startTimestamp),
+              end:validTime(live?.endTimestamp),
+              broadcast:!!(live?.startTimestamp||detail.isLiveContent),
+              source:'youtube-player'
+            };
+          }
+          const video=document.querySelector('video.html5-main-video');
+          const seconds=Number(video?.duration);
+          if(video&&Number.isFinite(seconds)&&seconds>0){
+            const title=(document.title||'').replace(/\s*-\s*YouTube\s*$/,'');
+            return {videoId:expectedId,title:title.slice(0,220),channel:'',
+              durationSeconds:Math.round(seconds),start:null,end:null,broadcast:false,
+              source:'video-element'};
+          }
+          return null;
+        }
+        for(let i=0;i<35;i++){
+          const result=extract();
+          if(result?.durationSeconds>0)return result;
+          if(i===34&&result)return result;
+          await wait(350);
+        }
+        return {videoId:expectedId,title:'',channel:'',durationSeconds:0,start:null,end:null,
+          broadcast:false,source:'not_available'};
+      }
+    });
+    const info=injected?.result;
+    if(!info||info.videoId!==videoId)throw Error('metadata_video_mismatch');
+    return info;
+  }finally{
+    if(tab?.id)try{await chrome.tabs.remove(tab.id)}catch{}
+  }
+}
+
 chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
+  if(message?.type==='METADATA'){
+    const siteTab=sender.tab;
+    const videoId=message.videoId;
+    const requestId=message.requestId;
+    if(!siteTab||!sender.url?.startsWith(SITE)||!VIDEO_ID.test(videoId||'')
+      ||typeof requestId!=='string'||requestId.length>90){
+      sendResponse({ok:false,message:'動画URLまたは呼び出し元が不正です'});return false;
+    }
+    if(busy){sendResponse({ok:false,message:'スクショ回収中です。完了後に試してください'});return false}
+    busy=true;
+    sendResponse({ok:true});
+    metadataForVideo(siteTab,videoId)
+      .then(info=>send(siteTab.id,'METADATA_RESULT',{requestId,videoId,ok:true,info}))
+      .catch(error=>send(siteTab.id,'METADATA_RESULT',{requestId,videoId,ok:false,
+        message:String(error?.message||'metadata_error').slice(0,120)}))
+      .finally(()=>{busy=false});
+    return false;
+  }
   if(message?.type!=='BATCH')return false;
   const siteTab=sender.tab;
   if(!siteTab||!sender.url?.startsWith(SITE)){
@@ -132,8 +222,8 @@ chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
   }
   const items=message.items;
   if(busy){sendResponse({ok:false,message:'既に処理中です'});return false}
-  if(!Array.isArray(items)||items.length<1||items.length>7||!items.every(item=>VIDEO_ID.test(item.videoId||''))){
-    sendResponse({ok:false,message:'対象は1〜7件の公開動画に限定しています'});return false;
+  if(!Array.isArray(items)||items.length<1||items.length>10||!items.every(item=>VIDEO_ID.test(item.videoId||''))){
+    sendResponse({ok:false,message:'対象は1〜10件の公開動画に限定しています'});return false;
   }
   busy=true;
   sendResponse({ok:true});
