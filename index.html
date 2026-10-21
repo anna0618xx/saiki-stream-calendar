@@ -1196,27 +1196,81 @@ $('addSchedule').onclick=()=>openScheduleEditor();
 $('scCancel').onclick=()=>$('scheduleDialog').close();
 $('scDelete').onclick=()=>{if(scheduleEditing&&confirm('この予定と関連する日付を削除しますか？')){schedules=schedules.filter(x=>x.id!==scheduleEditing.id);$('scheduleDialog').close();saveSchedules()}};
 $('scheduleForm').onsubmit=e=>{e.preventDefault();const type=$('scType').value,title=$('scTitle').value.trim();if(!title)return;const entry={id:scheduleEditing?.id||newId(),type,tag:$('scTag').value,title,reserveStart:$('scReserveStart').value,deadline:$('scDeadline').value,release:$('scRelease').value,booked:$('scBooked').checked,start:$('scStart').value,end:$('scEnd').value,allDay:$('scAllDay').checked,location:$('scLocation').value.trim(),link:$('scLink').value.trim(),memo:$('scMemo').value.trim(),photo:type==='event'?schedulePhotoDraft:''};if(type==='goods'&&!entry.reserveStart&&!entry.deadline&&!entry.release){alert('予約開始・予約締切・発売日のいずれかを入力してください。');return}if(type!=='goods'&&!entry.start){alert('開始日時を入力してください。');return}if(type!=='goods'&&entry.end&&entry.end<entry.start){alert('終了日時は開始日時以降にしてください。');return}if(scheduleEditing){schedules=schedules.map(x=>x.id===entry.id?entry:x)}else schedules.push(entry);$('scheduleDialog').close();saveSchedules()};
-function fillArchiveForm(item){const start=item.actualStart||item.start||item.scheduledStart,end=item.actualEnd||item.end;
-  if(item.title)$('title').value=item.title;
-  if(item.channel)$('channel').value=item.channel;
-  if(start){const v=localISO(start);if(v){$('date').value=v;$('confirmedTime').checked=true}}
-  if(start&&end){const minutes=Math.round((new Date(end)-new Date(start))/60000);if(minutes>0&&minutes<=1440)$('duration').value=minutes}
-  return Boolean(start);
+
+function applyMetadataMinutes(minutes,source){
+ if(!Number.isInteger(minutes)||minutes<1||minutes>1440)return false;
+ const currentMinutes=Number($('duration').value);
+ if(currentMinutes===minutes)return true;
+ const hasManualValue=Boolean(editing)||currentMinutes!==120;
+ if(hasManualValue&&!confirm('配信時間を更新しますか？\n現在：'+currentMinutes+'分\n'+source+'：'+minutes+'分\n\nキャンセルすると手入力した時間を維持します。'))return false;
+ $('duration').value=minutes;
+ return true;
 }
-$('fetchMetadata').onclick=async()=>{const id=vid($('url').value);if(!id){$('metadataNote').textContent='YouTubeの動画URLを入力してください。';return}
-  const btn=$('fetchMetadata');btn.disabled=true;btn.textContent='確認中…';
+function fillArchiveForm(item){
+ const start=item.actualStart||item.start||item.scheduledStart,end=item.actualEnd||item.end;
+ if(item.title)$('title').value=item.title;
+ if(item.channel)$('channel').value=item.channel;
+ if(start){
+  const local=localISO(start);
+  if(local){$('date').value=local;$('confirmedTime').checked=true}
+ }
+ if(start&&end){
+  const minutes=Math.round((new Date(end)-new Date(start))/60000);
+  applyMetadataMinutes(minutes,'公開配信データ');
+ }
+ return Boolean(start&&end);
+}
+$('fetchMetadata').onclick=async()=>{
+ const id=vid($('url').value);
+ if(!id){$('metadataNote').textContent='YouTubeの動画URLを入力してください。';return}
+ const btn=$('fetchMetadata');
+ btn.disabled=true;btn.textContent='取得中…';
+ try{
+  const matched=archiveFeedEntries.find(x=>x.videoId===id);
+  if(matched&&fillArchiveForm(matched)){
+   $('metadataNote').textContent='✅ 公開配信データからタイトル・開始時刻・配信時間を取得しました。内容を確認して保存してください。';
+   return;
+  }
+  let extensionError=null;
   try{
-    const matched=archiveFeedEntries.find(x=>x.videoId===id);
-    if(matched&&fillArchiveForm(matched)){
-      $('metadataNote').textContent='✅ YouTube APIの配信開始時刻を反映しました。内容を確認して保存してください。';
-      return;
+   const info=await requestYoutubeMetadata(id);
+   if(info?.videoId!==id)throw Error('取得した動画IDが一致しません');
+   if(info.title)$('title').value=info.title;
+   if(info.channel)$('channel').value=info.channel;
+   if(info.start){
+    const local=localISO(info.start);
+    if(local){
+     if(!editing||$('date').value===local||confirm('開始日時をYouTubeで取得した '+local.replace('T',' ')+' に変更しますか？')){
+      $('date').value=local;$('confirmedTime').checked=true;
+     }
     }
-    const res=await fetch('https://www.youtube.com/oembed?url='+encodeURIComponent('https://www.youtube.com/watch?v='+id)+'&format=json');
-    if(!res.ok)throw Error('metadata unavailable');
-    const data=await res.json();if(data.title)$('title').value=data.title;if(data.author_name)$('channel').value=data.author_name;
-    $('metadataNote').textContent='タイトルを取得しました。配信時刻は公開データにないため未取得です。メン限の場合は下の取込ブックマークを使用してください。';
-  }catch(e){$('metadataNote').textContent='このURLは公開データから取得できませんでした。メン限の場合はYouTubeにログインして「メン限日時取込」をお試しください。'}
-  finally{btn.disabled=false;btn.textContent='URLから配信日時・タイトルを取得'}
+   }
+   let seconds=Number(info.durationSeconds);
+   if(!(Number.isFinite(seconds)&&seconds>0)&&info.start&&info.end){
+    seconds=(Date.parse(info.end)-Date.parse(info.start))/1000;
+   }
+   const minutes=Number.isFinite(seconds)&&seconds>0?Math.max(1,Math.round(seconds/60)):0;
+   const changed=applyMetadataMinutes(minutes,'YouTubeの動画の長さ');
+   const status=minutes>1440?'動画の長さが24時間を超えるため自動入力できません。'
+      :minutes<1?'この動画の再生時間は取得できませんでした。'
+      :changed?'配信時間 '+minutes+'分を反映しました。':'手入力済みの配信時間を維持しました。';
+   $('metadataNote').textContent='✅ YouTubeから'+(info.title?'タイトル':'動画情報')+'を確認しました。'+status+' 内容を確認して保存してください。';
+   return;
+  }catch(error){
+   extensionError=error;
+  }
+  // oEmbed gives only title/channel. It does not provide duration.
+  const res=await fetch('https://www.youtube.com/oembed?url='+encodeURIComponent('https://www.youtube.com/watch?v='+id)+'&format=json');
+  if(!res.ok)throw Error('metadata unavailable');
+  const data=await res.json();
+  if(data.title)$('title').value=data.title;
+  if(data.author_name)$('channel').value=data.author_name;
+  $('metadataNote').textContent='タイトル・チャンネル名を取得しました。配信時間は未取得です。PCのChrome拡張 v0.1.3以降を導入・更新すると取得を試せます。'+(extensionError?.message?'（'+extensionError.message+'）':'');
+ }catch(error){
+  $('metadataNote').textContent='配信情報を取得できませんでした。URLを確認してください。メン限の場合は下の取込ブックマークをお試しください。';
+ }finally{
+  btn.disabled=false;btn.textContent='URLから配信情報を取得';
+ }
 };
 function setupMemberTimeBookmarklet(){
   const link=$('memberTimeBookmarklet');if(!link)return;
@@ -1335,6 +1389,32 @@ window.addEventListener('resize',()=>{
 
 /* v7.4 — PC-only opt-in screenshot collector; draft images stay in this browser. */
 const CAPTURE_CHANNEL='saiki-pc-capture-v1',CAPTURE_INDEX_KEY='saiki-capture-pending-v1';
+const metadataRequests=new Map();
+function requestYoutubeMetadata(videoId){
+ return new Promise((resolve,reject)=>{
+  const requestId='meta-'+(crypto.randomUUID?.()||String(Date.now())+'-'+Math.random());
+  let completed=false,replyTimer=null;
+  const finish=(error,info)=>{
+   if(completed)return;
+   completed=true;clearTimeout(readyTimer);clearTimeout(replyTimer);
+   metadataRequests.delete(requestId);
+   if(error)reject(error);else resolve(info);
+  };
+  const readyTimer=setTimeout(()=>finish(Error('PC拡張が見つかりません')),1800);
+  metadataRequests.set(requestId,{
+   start(){
+    clearTimeout(readyTimer);
+    replyTimer=setTimeout(()=>finish(Error('動画の読み込みがタイムアウトしました')),45000);
+   },
+   result(payload){
+    if(payload.videoId!==videoId){finish(Error('動画IDが一致しません'));return}
+    if(payload.ok&&payload.info)finish(null,payload.info);
+    else finish(Error(payload.message||'YouTubeから再生情報を読み取れませんでした'));
+   }
+  });
+  window.postMessage({channel:CAPTURE_CHANNEL,direction:'site',type:'METADATA',requestId,videoId},location.origin);
+ });
+}
 let localCaptureIndex={};
 try{const stored=JSON.parse(localStorage.getItem(CAPTURE_INDEX_KEY)||'{}');if(stored&&typeof stored==='object')localCaptureIndex=stored}catch{}
 const saveCaptureIndex=()=>localStorage.setItem(CAPTURE_INDEX_KEY,JSON.stringify(localCaptureIndex));
@@ -1654,6 +1734,14 @@ window.addEventListener('message',event=>{
  if(event.source!==window||event.origin!==location.origin)return;
  const data=event.data;
  if(!data||data.channel!==CAPTURE_CHANNEL||data.direction!=='extension')return;
+ if(data.type==='METADATA_STARTED'){
+  metadataRequests.get(data.requestId)?.start();
+  return;
+ }
+ if(data.type==='METADATA_RESULT'){
+  metadataRequests.get(data.requestId)?.result(data);
+  return;
+ }
  if(data.type==='STARTED'){
   clearTimeout(captureTimer);captureTimer=0;
   $('captureProgress').textContent='取得開始。YouTubeのタブを順番に表示します。';
