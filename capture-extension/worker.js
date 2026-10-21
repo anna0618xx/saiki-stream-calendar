@@ -155,7 +155,8 @@ async function metadataForVideo(siteTab,videoId){
             const length=Number(detail.lengthSeconds);
             const elem=document.querySelector('video.html5-main-video');
             const fallback=Number(elem?.duration);
-            const seconds=Number.isFinite(length)&&length>0?length:Number.isFinite(fallback)&&fallback>0?fallback:0;
+            const isAd=Boolean(player?.classList.contains('ad-showing')||player?.classList.contains('ad-interrupting'));
+            const seconds=Number.isFinite(length)&&length>0?length:!isAd&&Number.isFinite(fallback)&&fallback>0?fallback:0;
             const renderer=response?.microformat?.playerMicroformatRenderer;
             return {
               videoId:expectedId,
@@ -170,7 +171,8 @@ async function metadataForVideo(siteTab,videoId){
           }
           const video=document.querySelector('video.html5-main-video');
           const seconds=Number(video?.duration);
-          if(video&&Number.isFinite(seconds)&&seconds>0){
+          const isAd=Boolean(player?.classList.contains('ad-showing')||player?.classList.contains('ad-interrupting'));
+          if(!isAd&&video&&Number.isFinite(seconds)&&seconds>0){
             const title=(document.title||'').replace(/\s*-\s*YouTube\s*$/,'');
             return {videoId:expectedId,title:title.slice(0,220),channel:'',
               durationSeconds:Math.round(seconds),start:null,end:null,broadcast:false,
