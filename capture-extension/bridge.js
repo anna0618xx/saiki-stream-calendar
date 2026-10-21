@@ -8,9 +8,22 @@
   window.addEventListener('message',event=>{
     if(event.source!==window||event.origin!==ORIGIN)return;
     const msg=event.data;
-    if(!msg||msg.channel!==CHANNEL||msg.direction!=='site'||msg.type!=='START')return;
+    if(!msg||msg.channel!==CHANNEL||msg.direction!=='site')return;
+    if(msg.type==='METADATA'){
+      const requestId=msg.requestId,videoId=msg.videoId;
+      if(typeof requestId!=='string'||requestId.length>90||!/^[A-Za-z0-9_-]{11}$/.test(videoId||'')){
+        emit('METADATA_RESULT',{requestId,videoId,ok:false,message:'動画IDを確認してください'});return;
+      }
+      chrome.runtime.sendMessage({type:'METADATA',requestId,videoId},reply=>{
+        const error=chrome.runtime.lastError?.message;
+        if(error||!reply?.ok)emit('METADATA_RESULT',{requestId,videoId,ok:false,
+          message:error||reply?.message||'拡張機能がこの操作に対応していません'});
+      });
+      return;
+    }
+    if(msg.type!=='START')return;
     const list=Array.isArray(msg.items)?msg.items:[];
-    if(list.length<1||list.length>7||!list.every(x=>x&&/^[A-Za-z0-9_-]{11}$/.test(x.videoId||''))){
+    if(list.length<1||list.length>10||!list.every(x=>x&&/^[A-Za-z0-9_-]{11}$/.test(x.videoId||''))){
       emit('ERROR',{message:'対象の動画IDを確認してください'});return;
     }
     chrome.runtime.sendMessage({type:'BATCH',items:list.map(x=>({videoId:x.videoId}))},reply=>{
@@ -21,7 +34,7 @@
   });
   chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
     if(!message||message.channel!==CHANNEL)return false;
-    if(!['PROGRESS','IMAGE','FINISHED'].includes(message.type))return false;
+    if(!['PROGRESS','IMAGE','FINISHED','METADATA_RESULT'].includes(message.type))return false;
     emit(message.type,{...message.payload});
     sendResponse({ok:true});
     return false;
