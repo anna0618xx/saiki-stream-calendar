@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T20:14:59.523861+00:00",
+  "generatedAt": "2026-10-21T20:14:58.160576+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -4971,6 +4971,25 @@
       "status": "ended",
       "url": "https://www.youtube.com/watch?v=rfynX0azvvE",
       "thumbnail": "https://i.ytimg.com/vi/rfynX0azvvE/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "oevExn_gLRM",
+      "title": "【ほぼ初見part03】君のことをいつも思うよ…ココンキョウ(ドーミラー)【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-10-21",
+      "start": "2026-10-21T13:28:09Z",
+      "end": "2026-10-21T20:05:05Z",
+      "scheduledStart": "2026-10-21T13:30:00Z",
+      "actualStart": "2026-10-21T13:28:09Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=oevExn_gLRM",
+      "thumbnail": "https://i.ytimg.com/vi/oevExn_gLRM/mqdefault.jpg",
       "candidate": false,
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
