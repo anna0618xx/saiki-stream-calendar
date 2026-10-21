@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "佐伯配信手帳｜PCスクショ回収（試験版）",
-  "version": "0.1.2",
-  "description": "手動開始した公開YouTube配信だけを順番に開き、表示画面を撮影して佐伯配信手帳へ渡します。",
+  "version": "0.1.3",
+  "description": "手動操作でYouTube配信のスクショ回収（最大10件）と配信時間の確認を補助します。",
   "permissions": [
     "tabs",
     "scripting"
