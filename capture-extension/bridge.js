@@ -14,6 +14,7 @@
       if(typeof requestId!=='string'||requestId.length>90||!/^[A-Za-z0-9_-]{11}$/.test(videoId||'')){
         emit('METADATA_RESULT',{requestId,videoId,ok:false,message:'動画IDを確認してください'});return;
       }
+      emit('METADATA_STARTED',{requestId,videoId});
       chrome.runtime.sendMessage({type:'METADATA',requestId,videoId},reply=>{
         const error=chrome.runtime.lastError?.message;
         if(error||!reply?.ok)emit('METADATA_RESULT',{requestId,videoId,ok:false,
