@@ -22,5 +22,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "aRxV4oIE8OM": {
+    "at": "2026-10-22T08:25:39.201074+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }
