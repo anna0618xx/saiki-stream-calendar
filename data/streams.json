@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T20:14:58.160576+00:00",
+  "generatedAt": "2026-10-22T20:16:24.296438+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -4940,6 +4940,25 @@
       "available": true
     },
     {
+      "videoId": "Vumh1WZLh2Y",
+      "title": "【ゲストさんに聞いた10の質問】第43回 ゲストさんに聞いた10の質問  佐伯イッテツ様【にじさんじ/桜凛月】",
+      "channel": "桜凛月",
+      "channelType": "other",
+      "day": "2026-10-18",
+      "start": "2026-10-18T03:01:22Z",
+      "end": "2026-10-18T04:09:28Z",
+      "scheduledStart": "2026-10-18T03:00:00Z",
+      "actualStart": "2026-10-18T03:01:22Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=Vumh1WZLh2Y",
+      "thumbnail": "https://i.ytimg.com/vi/Vumh1WZLh2Y/mqdefault.jpg",
+      "candidate": true,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.001,
+      "available": true
+    },
+    {
       "videoId": "Oh3ZwqxeGYI",
       "title": "【ほぼ初見part01】真珠じゃなくてパール【にじさんじ／佐伯イッテツ】",
       "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
@@ -4990,6 +5009,25 @@
       "status": "ended",
       "url": "https://www.youtube.com/watch?v=oevExn_gLRM",
       "thumbnail": "https://i.ytimg.com/vi/oevExn_gLRM/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "BvVG6ynULzE",
+      "title": "【ほぼ初見part04】バイバイテッカニン【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-10-22",
+      "start": "2026-10-22T10:59:16Z",
+      "end": "2026-10-22T15:50:25Z",
+      "scheduledStart": "2026-10-22T11:00:00Z",
+      "actualStart": "2026-10-22T10:59:16Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=BvVG6ynULzE",
+      "thumbnail": "https://i.ytimg.com/vi/BvVG6ynULzE/mqdefault.jpg",
       "candidate": false,
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
