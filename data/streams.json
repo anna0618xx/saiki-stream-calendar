@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22T20:16:24.296438+00:00",
+  "generatedAt": "2026-10-23T20:12:56.834484+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5029,6 +5029,25 @@
       "url": "https://www.youtube.com/watch?v=BvVG6ynULzE",
       "thumbnail": "https://i.ytimg.com/vi/BvVG6ynULzE/mqdefault.jpg",
       "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "Bq6tZZUGeHM",
+      "title": "【キーボードパズル】配信者なら余裕！？バラバラになったキーボードを元に戻せ！【長尾景/先斗寧/佐伯イッテツ/水面まどか/にじさんじ】",
+      "channel": "長尾 景 / Nagao Kei【にじさんじ】",
+      "channelType": "other",
+      "day": "2026-10-23",
+      "start": "2026-10-23T09:59:06Z",
+      "end": "2026-10-23T11:19:13Z",
+      "scheduledStart": "2026-10-23T10:00:00Z",
+      "actualStart": "2026-10-23T09:59:06Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=Bq6tZZUGeHM",
+      "thumbnail": "https://i.ytimg.com/vi/Bq6tZZUGeHM/mqdefault.jpg",
+      "candidate": true,
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.0,
