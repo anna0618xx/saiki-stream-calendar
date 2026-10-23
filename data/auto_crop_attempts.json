@@ -34,5 +34,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "IBXtxc9Jdr4": {
+    "at": "2026-10-23T08:22:56.092006+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }
