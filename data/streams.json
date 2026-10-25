@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-23T20:12:56.834484+00:00",
+  "generatedAt": "2026-10-25T08:12:31.279028+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5048,6 +5048,25 @@
       "url": "https://www.youtube.com/watch?v=Bq6tZZUGeHM",
       "thumbnail": "https://i.ytimg.com/vi/Bq6tZZUGeHM/mqdefault.jpg",
       "candidate": true,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "q-_14wrt41U",
+      "title": "【ほぼ初見part05】ヌケニンを抱きしめたらどうなる？【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-10-25",
+      "start": "2026-10-25T06:29:50Z",
+      "end": null,
+      "scheduledStart": "2026-10-25T06:30:00Z",
+      "actualStart": "2026-10-25T06:29:50Z",
+      "status": "live",
+      "url": "https://www.youtube.com/watch?v=q-_14wrt41U",
+      "thumbnail": "https://i.ytimg.com/vi/q-_14wrt41U/mqdefault.jpg",
+      "candidate": false,
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.0,
