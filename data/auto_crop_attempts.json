@@ -58,5 +58,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "q-_14wrt41U": {
+    "at": "2026-10-25T20:08:20.145322+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }
