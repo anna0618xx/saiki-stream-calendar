@@ -1,35 +1,25 @@
 {
-  "generatedAt": "2026-10-26T17:30:41.640237+09:00",
+  "generatedAt": "2026-10-27T05:17:16.820830+09:00",
   "candidates": [
     {
-      "id": "wiki-deadline-2026-10-25-84effbb9b8",
-      "title": "“Over Drive!”追加グッズ 受注",
-      "date": "2026-10-25",
-      "kind": "deadline",
-      "sourceUrl": "https://wikiwiki.jp/nijisanji/佐伯イッテツ/スケジュール",
-      "detailUrl": "",
-      "source": "nijisanji-wiki",
-      "note": "“Over Drive!”追加グッズ 受注販売終了"
-    },
-    {
-      "id": "wiki-deadline-2026-10-25-0b54517029",
-      "title": "MECHATU-A 1st LIVE “Over Drive!” グッズ",
-      "date": "2026-10-25T23:59",
-      "kind": "deadline",
-      "sourceUrl": "https://wikiwiki.jp/nijisanji/佐伯イッテツ",
-      "detailUrl": "",
-      "source": "nijisanji-wiki",
-      "note": "追加グッズ受注販売期間：2026年10月10日(土)21時～10月25日(日)23時59分"
-    },
-    {
-      "id": "wiki-deadline-2026-10-25-0a6e4ad27c",
+      "id": "wiki-reserveStart-2026-11-12-0a6e4ad27c",
       "title": "発売予定/発売中の期間限定グッズ",
-      "date": "2026-10-25T23:59",
+      "date": "2026-11-12T12:00",
+      "kind": "reserveStart",
+      "sourceUrl": "https://wikiwiki.jp/nijisanji/佐伯イッテツ/宣伝",
+      "detailUrl": "",
+      "source": "nijisanji-wiki",
+      "note": "オンライン販売期間 ：202*年11月12日(木)12時～12月8日(火)23時59分 発送予定時期 ：2027年4月下旬頃～"
+    },
+    {
+      "id": "wiki-deadline-2026-12-08-0a6e4ad27c",
+      "title": "発売予定/発売中の期間限定グッズ",
+      "date": "2026-12-08T23:59",
       "kind": "deadline",
       "sourceUrl": "https://wikiwiki.jp/nijisanji/佐伯イッテツ/宣伝",
       "detailUrl": "",
       "source": "nijisanji-wiki",
-      "note": "追加グッズ受注販売期間 ：2026年10月10日(土)21時～10月25日(日)23時59分"
+      "note": "オンライン販売期間 ：202*年11月12日(木)12時～12月8日(火)23時59分 発送予定時期 ：2027年4月下旬頃～"
     }
   ],
   "notice": "Public Wiki-derived hints only; verify details before manually saving."
