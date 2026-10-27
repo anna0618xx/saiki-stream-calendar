@@ -76,5 +76,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "3Gtd1W33CBM": {
+    "at": "2026-10-27T08:28:02.696177+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }
