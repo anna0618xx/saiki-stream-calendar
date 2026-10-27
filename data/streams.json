@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-25T20:08:04.226535+00:00",
+  "generatedAt": "2026-10-27T20:24:05.084024+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5066,6 +5066,25 @@
       "status": "ended",
       "url": "https://www.youtube.com/watch?v=q-_14wrt41U",
       "thumbnail": "https://i.ytimg.com/vi/q-_14wrt41U/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "XjG-jX3EHwA",
+      "title": "【ほぼ初見part06】意気揚々？いや、いっき揚々！！【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-10-27",
+      "start": "2026-10-27T11:29:58Z",
+      "end": "2026-10-27T18:11:28Z",
+      "scheduledStart": "2026-10-27T11:30:00Z",
+      "actualStart": "2026-10-27T11:29:58Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=XjG-jX3EHwA",
+      "thumbnail": "https://i.ytimg.com/vi/XjG-jX3EHwA/mqdefault.jpg",
       "candidate": false,
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
