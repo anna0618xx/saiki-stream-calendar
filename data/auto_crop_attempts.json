@@ -88,5 +88,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "7EvhWJ73H3M": {
+    "at": "2026-11-01T20:18:14.586770+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }
