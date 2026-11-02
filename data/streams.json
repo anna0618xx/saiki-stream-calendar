@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T20:17:46.525612+00:00",
+  "generatedAt": "2026-11-02T08:47:18.671903+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5092,6 +5092,25 @@
       "available": true
     },
     {
+      "videoId": "0Upn8CBbEvI",
+      "title": "にじさんじ×TECH.C.【コラボオープンキャンパス#11】",
+      "channel": "東京デザインテクノロジーセンター専門学校",
+      "channelType": "external",
+      "day": "2026-11-01",
+      "start": "2026-11-01T04:30:10Z",
+      "end": "2026-11-01T06:08:11Z",
+      "scheduledStart": "2026-11-01T04:30:00Z",
+      "actualStart": "2026-11-01T04:30:10Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=0Upn8CBbEvI",
+      "thumbnail": "https://i.ytimg.com/vi/0Upn8CBbEvI/mqdefault.jpg",
+      "candidate": true,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.003,
+      "available": true
+    },
+    {
       "videoId": "7EvhWJ73H3M",
       "title": "【ほぼ初見part07 番外編】地元のポケモンと触れ合おう！！【にじさんじ／佐伯イッテツ】",
       "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
@@ -5108,6 +5127,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "5a65MlMYbnY",
+      "title": "【#にじユーフィット】豪華ゲスト？をお呼びして商品紹介します！【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-05",
+      "start": "2026-11-05T12:00:00Z",
+      "end": null,
+      "scheduledStart": "2026-11-05T12:00:00Z",
+      "actualStart": null,
+      "status": "scheduled",
+      "url": "https://www.youtube.com/watch?v=5a65MlMYbnY",
+      "thumbnail": "https://i.ytimg.com/vi/5a65MlMYbnY/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.041,
       "available": true
     }
   ],
