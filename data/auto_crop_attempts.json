@@ -94,5 +94,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "dWzErNkh8Ns": {
+    "at": "2026-11-03T20:31:16.403833+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T08:47:18.671903+00:00",
+  "generatedAt": "2026-11-03T20:30:31.991635+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5127,6 +5127,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "dWzErNkh8Ns",
+      "title": "【雑談】酒が弱い奴でも楽しめる、此処は居水屋【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-03",
+      "start": "2026-11-03T10:00:11Z",
+      "end": "2026-11-03T11:05:07Z",
+      "scheduledStart": "2026-11-03T10:00:00Z",
+      "actualStart": "2026-11-03T10:00:11Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=dWzErNkh8Ns",
+      "thumbnail": "https://i.ytimg.com/vi/dWzErNkh8Ns/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.023,
       "available": true
     },
     {
