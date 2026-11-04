@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-03T20:30:31.991635+00:00",
+  "generatedAt": "2026-11-04T20:37:29.626205+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5165,6 +5165,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.041,
+      "available": true
+    },
+    {
+      "videoId": "cygMuKzgPmA",
+      "title": "GOOD　MORNING　EVERYONE【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-05",
+      "start": "2026-11-04T19:34:32Z",
+      "end": null,
+      "scheduledStart": "2026-11-04T19:45:00Z",
+      "actualStart": "2026-11-04T19:34:32Z",
+      "status": "live",
+      "url": "https://www.youtube.com/watch?v=cygMuKzgPmA",
+      "thumbnail": "https://i.ytimg.com/vi/cygMuKzgPmA/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "chat",
+      "greenScore": 1.0,
       "available": true
     }
   ],

@@ -1348,5 +1348,10 @@
     "ratio": 0.023,
     "tiles": 3,
     "isGreen": false
+  },
+  "cygMuKzgPmA": {
+    "ratio": 1.0,
+    "tiles": 108,
+    "isGreen": true
   }
 }
