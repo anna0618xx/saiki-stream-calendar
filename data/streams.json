@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T08:44:23.905757+00:00",
+  "generatedAt": "2026-11-05T20:33:01.479966+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5154,11 +5154,11 @@
       "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
       "channelType": "self",
       "day": "2026-11-05",
-      "start": "2026-11-05T12:00:00Z",
-      "end": null,
+      "start": "2026-11-05T11:59:48Z",
+      "end": "2026-11-05T13:42:39Z",
       "scheduledStart": "2026-11-05T12:00:00Z",
-      "actualStart": null,
-      "status": "scheduled",
+      "actualStart": "2026-11-05T11:59:48Z",
+      "status": "ended",
       "url": "https://www.youtube.com/watch?v=5a65MlMYbnY",
       "thumbnail": "https://i.ytimg.com/vi/5a65MlMYbnY/mqdefault.jpg",
       "candidate": false,
