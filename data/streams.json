@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-05T20:33:01.479966+00:00",
+  "generatedAt": "2026-11-06T20:32:01.316259+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5184,6 +5184,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "chat",
       "greenScore": 1.0,
+      "available": true
+    },
+    {
+      "videoId": "6qlD7Z-K7nk",
+      "title": "【ほぼ初見　最終回】諸々ゲットだぜ！！【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-06",
+      "start": "2026-11-06T09:29:56Z",
+      "end": "2026-11-06T18:43:52Z",
+      "scheduledStart": "2026-11-06T09:30:00Z",
+      "actualStart": "2026-11-06T09:29:56Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=6qlD7Z-K7nk",
+      "thumbnail": "https://i.ytimg.com/vi/6qlD7Z-K7nk/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
       "available": true
     }
   ],
