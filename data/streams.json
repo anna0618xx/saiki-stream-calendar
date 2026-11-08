@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-06T20:32:01.316259+00:00",
+  "generatedAt": "2026-11-08T08:36:12.928053+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5200,6 +5200,25 @@
       "url": "https://www.youtube.com/watch?v=6qlD7Z-K7nk",
       "thumbnail": "https://i.ytimg.com/vi/6qlD7Z-K7nk/mqdefault.jpg",
       "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "bC0hnpjYbwM",
+      "title": "【#早瀬とサシ飲み再演】早瀬走×佐伯イッテツ　part.7",
+      "channel": "早瀬 走 / Hayase Sou【にじさんじ所属】",
+      "channelType": "other",
+      "day": "2026-11-07",
+      "start": "2026-11-07T13:00:25Z",
+      "end": "2026-11-07T15:22:34Z",
+      "scheduledStart": "2026-11-07T13:00:00Z",
+      "actualStart": "2026-11-07T13:00:25Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=bC0hnpjYbwM",
+      "thumbnail": "https://i.ytimg.com/vi/bC0hnpjYbwM/mqdefault.jpg",
+      "candidate": true,
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.0,
