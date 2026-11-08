@@ -118,5 +118,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "LmCjUlcfW6w": {
+    "at": "2026-11-08T20:23:04.084940+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }
