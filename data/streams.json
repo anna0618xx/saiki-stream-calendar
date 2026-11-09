@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T20:22:45.820844+00:00",
+  "generatedAt": "2026-11-09T20:38:57.814927+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5260,6 +5260,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "r1QRHP9tOMY",
+      "title": "【来たるAPEXコラボ】かぶとむしも勝利も取りに行くAPEX　※佐伯支店【にじさんじ／佐伯イッテツ/加賀美ハヤト/皇れお】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-09",
+      "start": "2026-11-09T12:01:07Z",
+      "end": "2026-11-09T14:44:37Z",
+      "scheduledStart": "2026-11-09T12:00:00Z",
+      "actualStart": "2026-11-09T12:01:07Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=r1QRHP9tOMY",
+      "thumbnail": "https://i.ytimg.com/vi/r1QRHP9tOMY/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.112,
       "available": true
     }
   ],
