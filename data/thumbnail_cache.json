@@ -1378,5 +1378,10 @@
     "ratio": 0.112,
     "tiles": 11,
     "isGreen": false
+  },
+  "L-g3RJ_ovwA": {
+    "ratio": 1.0,
+    "tiles": 108,
+    "isGreen": true
   }
 }
