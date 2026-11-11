@@ -136,5 +136,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "L-g3RJ_ovwA": {
+    "at": "2026-11-11T08:43:41.035241+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }
