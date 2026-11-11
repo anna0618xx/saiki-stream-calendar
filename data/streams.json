@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-11T08:43:09.450754+00:00",
+  "generatedAt": "2026-11-11T21:16:19.913576+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5279,6 +5279,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.112,
+      "available": true
+    },
+    {
+      "videoId": "0pdXw-QrmlQ",
+      "title": "【ほぼ初見　最終回PART2】ファミリーだよ！全員集合!!【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-11",
+      "start": "2026-11-11T11:29:26Z",
+      "end": "2026-11-11T17:23:24Z",
+      "scheduledStart": "2026-11-11T11:30:00Z",
+      "actualStart": "2026-11-11T11:29:26Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=0pdXw-QrmlQ",
+      "thumbnail": "https://i.ytimg.com/vi/0pdXw-QrmlQ/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
       "available": true
     },
     {
