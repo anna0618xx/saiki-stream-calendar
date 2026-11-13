@@ -1,16 +1,6 @@
 {
-  "generatedAt": "2026-11-13T17:43:47.957916+09:00",
+  "generatedAt": "2026-11-14T05:38:49.248638+09:00",
   "candidates": [
-    {
-      "id": "wiki-reserveStart-2026-11-12-0a6e4ad27c",
-      "title": "発売予定/発売中の期間限定グッズ",
-      "date": "2026-11-12T12:00",
-      "kind": "reserveStart",
-      "sourceUrl": "https://wikiwiki.jp/nijisanji/佐伯イッテツ/宣伝",
-      "detailUrl": "",
-      "source": "nijisanji-wiki",
-      "note": "オンライン販売期間 ：2026年11月12日(木)12時～12月8日(火)23時59分 発送予定時期 ：2027年4月下旬頃～"
-    },
     {
       "id": "wiki-deadline-2026-12-08-0a6e4ad27c",
       "title": "発売予定/発売中の期間限定グッズ",
