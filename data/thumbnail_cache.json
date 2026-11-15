@@ -1388,5 +1388,10 @@
     "ratio": 0.0,
     "tiles": 0,
     "isGreen": false
+  },
+  "8GWRLkbiaMk": {
+    "ratio": 1.0,
+    "tiles": 108,
+    "isGreen": true
   }
 }
