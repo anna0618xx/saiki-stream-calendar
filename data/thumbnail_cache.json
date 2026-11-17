@@ -1393,5 +1393,10 @@
     "ratio": 1.0,
     "tiles": 108,
     "isGreen": true
+  },
+  "xqY3BI_UZ9o": {
+    "ratio": 0.0,
+    "tiles": 0,
+    "isGreen": false
   }
 }
