@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T20:38:43.393853+00:00",
+  "generatedAt": "2026-11-19T01:33:29.065859+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5370,6 +5370,25 @@
       "url": "https://www.youtube.com/watch?v=xqY3BI_UZ9o",
       "thumbnail": "https://i.ytimg.com/vi/xqY3BI_UZ9o/mqdefault.jpg",
       "candidate": true,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "RN2y60S7P-A",
+      "title": "【星のカービィ 夢の泉の物語】ペポポポポポポポ【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-18",
+      "start": "2026-11-18T09:59:40Z",
+      "end": "2026-11-18T13:05:39Z",
+      "scheduledStart": "2026-11-18T10:00:00Z",
+      "actualStart": "2026-11-18T09:59:40Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=RN2y60S7P-A",
+      "thumbnail": "https://i.ytimg.com/vi/RN2y60S7P-A/mqdefault.jpg",
+      "candidate": false,
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.0,
