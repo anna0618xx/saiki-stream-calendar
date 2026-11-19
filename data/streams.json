@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T01:33:29.065859+00:00",
+  "generatedAt": "2026-11-19T16:52:54.422022+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5392,6 +5392,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.0,
+      "available": true
+    },
+    {
+      "videoId": "34k3wLV95lw",
+      "title": "【MIMESISコラボ】みんなであそんでみよう！【にじさんじ／佐伯イッテツ/樋口楓/九里詠太/御子神琴音】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-19",
+      "start": "2026-11-19T11:00:32Z",
+      "end": "2026-11-19T14:24:43Z",
+      "scheduledStart": "2026-11-19T11:00:00Z",
+      "actualStart": "2026-11-19T11:00:32Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=34k3wLV95lw",
+      "thumbnail": "https://i.ytimg.com/vi/34k3wLV95lw/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.061,
       "available": true
     }
   ],

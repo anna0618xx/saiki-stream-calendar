@@ -160,5 +160,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "34k3wLV95lw": {
+    "at": "2026-11-19T16:53:09.508201+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }
