@@ -108,10 +108,10 @@
     "reason": "bot_check"
   },
   "5a65MlMYbnY": {
-    "at": "2026-11-12T20:36:25.256418+00:00",
+    "at": "2026-11-20T16:28:27.966523+00:00",
     "result": "unavailable",
     "stage": "yt_dlp",
-    "reason": "bot_check"
+    "reason": "unavailable"
   },
   "6qlD7Z-K7nk": {
     "at": "2026-11-13T20:39:58.007365+00:00",
