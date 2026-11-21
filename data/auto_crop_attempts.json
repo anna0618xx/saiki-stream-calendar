@@ -172,5 +172,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "j7H5RplpVo8": {
+    "at": "2026-11-21T23:59:11.017574+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }
