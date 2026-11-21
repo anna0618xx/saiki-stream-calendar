@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T16:52:54.422022+00:00",
+  "generatedAt": "2026-11-21T15:41:42.754314+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5411,6 +5411,44 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.061,
+      "available": true
+    },
+    {
+      "videoId": "iPk_2xGwY2A",
+      "title": ":-(【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-21",
+      "start": "2026-11-21T12:08:44Z",
+      "end": "2026-11-21T14:58:13Z",
+      "scheduledStart": "2026-11-21T12:05:00Z",
+      "actualStart": "2026-11-21T12:08:44Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=iPk_2xGwY2A",
+      "thumbnail": "https://i.ytimg.com/vi/iPk_2xGwY2A/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "chat",
+      "greenScore": 1.0,
+      "available": true
+    },
+    {
+      "videoId": "j7H5RplpVo8",
+      "title": ":-)【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-21",
+      "start": "2026-11-21T12:00:23Z",
+      "end": "2026-11-21T12:06:34Z",
+      "scheduledStart": "2026-11-21T12:00:00Z",
+      "actualStart": "2026-11-21T12:00:23Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=j7H5RplpVo8",
+      "thumbnail": "https://i.ytimg.com/vi/j7H5RplpVo8/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "chat",
+      "greenScore": 1.0,
       "available": true
     }
   ],
