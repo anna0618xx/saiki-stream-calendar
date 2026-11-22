@@ -178,5 +178,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "ZsGRE-I7DPU": {
+    "at": "2026-11-22T15:44:27.300285+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }

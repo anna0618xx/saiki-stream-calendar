@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T15:41:42.754314+00:00",
+  "generatedAt": "2026-11-22T15:44:12.222631+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5449,6 +5449,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "chat",
       "greenScore": 1.0,
+      "available": true
+    },
+    {
+      "videoId": "ZsGRE-I7DPU",
+      "title": "【AIドット絵バトル】帰って来たぜ…この戦場にヨォ【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-22",
+      "start": "2026-11-22T10:29:56Z",
+      "end": "2026-11-22T14:05:15Z",
+      "scheduledStart": "2026-11-22T10:30:00Z",
+      "actualStart": "2026-11-22T10:29:56Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=ZsGRE-I7DPU",
+      "thumbnail": "https://i.ytimg.com/vi/ZsGRE-I7DPU/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.035,
       "available": true
     }
   ],

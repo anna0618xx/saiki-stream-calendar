@@ -1418,5 +1418,10 @@
     "ratio": 1.0,
     "tiles": 108,
     "isGreen": true
+  },
+  "ZsGRE-I7DPU": {
+    "ratio": 0.035,
+    "tiles": 4,
+    "isGreen": false
   }
 }
