@@ -1423,5 +1423,10 @@
     "ratio": 0.035,
     "tiles": 4,
     "isGreen": false
+  },
+  "nvAQ1T6JCrA": {
+    "ratio": 0.117,
+    "tiles": 8,
+    "isGreen": false
   }
 }

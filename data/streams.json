@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T15:44:12.222631+00:00",
+  "generatedAt": "2026-11-23T00:30:35.893668+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5468,6 +5468,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.035,
+      "available": true
+    },
+    {
+      "videoId": "nvAQ1T6JCrA",
+      "title": "【Capcom Arcade 2nd Stadium】ヴァンパイアセイヴァーを知ろう!!【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-23",
+      "start": "2026-11-22T22:58:20Z",
+      "end": null,
+      "scheduledStart": "2026-11-22T23:00:00Z",
+      "actualStart": "2026-11-22T22:58:20Z",
+      "status": "live",
+      "url": "https://www.youtube.com/watch?v=nvAQ1T6JCrA",
+      "thumbnail": "https://i.ytimg.com/vi/nvAQ1T6JCrA/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.117,
       "available": true
     }
   ],
