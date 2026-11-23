@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T00:30:35.893668+00:00",
+  "generatedAt": "2026-11-23T19:34:03.693790+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5477,16 +5477,35 @@
       "channelType": "self",
       "day": "2026-11-23",
       "start": "2026-11-22T22:58:20Z",
-      "end": null,
+      "end": "2026-11-23T02:34:50Z",
       "scheduledStart": "2026-11-22T23:00:00Z",
       "actualStart": "2026-11-22T22:58:20Z",
-      "status": "live",
+      "status": "ended",
       "url": "https://www.youtube.com/watch?v=nvAQ1T6JCrA",
       "thumbnail": "https://i.ytimg.com/vi/nvAQ1T6JCrA/mqdefault.jpg",
       "candidate": false,
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.117,
+      "available": true
+    },
+    {
+      "videoId": "tBVR_buPVrY",
+      "title": "【Capcom Fighting Collection】ドォン(銅鑼)【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-23",
+      "start": "2026-11-23T13:58:44Z",
+      "end": "2026-11-23T16:29:32Z",
+      "scheduledStart": "2026-11-23T14:00:00Z",
+      "actualStart": "2026-11-23T13:58:44Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=tBVR_buPVrY",
+      "thumbnail": "https://i.ytimg.com/vi/tBVR_buPVrY/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.096,
       "available": true
     }
   ],

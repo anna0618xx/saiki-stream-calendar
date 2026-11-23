@@ -1428,5 +1428,10 @@
     "ratio": 0.117,
     "tiles": 8,
     "isGreen": false
+  },
+  "tBVR_buPVrY": {
+    "ratio": 0.096,
+    "tiles": 6,
+    "isGreen": false
   }
 }
