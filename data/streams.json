@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T19:34:03.693790+00:00",
+  "generatedAt": "2026-11-24T19:09:03.218832+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5320,6 +5320,25 @@
       "available": true
     },
     {
+      "videoId": "PBMlEUFZzRQ",
+      "title": "【再始動】超長時間ノーカット！ろふまお200kmマラソン！！Part.2 #ろふまおマラソン",
+      "channel": "ROF-MAO / ろふまおチャンネル【にじさんじ】",
+      "channelType": "other",
+      "day": "2026-11-14",
+      "start": "2026-11-14T10:48:18Z",
+      "end": "2026-11-14T20:35:36Z",
+      "scheduledStart": "2026-11-14T10:50:00Z",
+      "actualStart": "2026-11-14T10:48:18Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=PBMlEUFZzRQ",
+      "thumbnail": "https://i.ytimg.com/vi/PBMlEUFZzRQ/mqdefault.jpg",
+      "candidate": true,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.072,
+      "available": true
+    },
+    {
       "videoId": "dzVoQrcQYcg",
       "title": "【#消えるミュージカル歌枠】ピアノ伴奏でミュージカル楽曲を歌います！ 佐伯イッテツ 周央サンゴ【宇佐美リト/にじさんじ】",
       "channel": "他ライバー・ユニット",
@@ -5502,6 +5521,25 @@
       "status": "ended",
       "url": "https://www.youtube.com/watch?v=tBVR_buPVrY",
       "thumbnail": "https://i.ytimg.com/vi/tBVR_buPVrY/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.096,
+      "available": true
+    },
+    {
+      "videoId": "IHZ5rlAnT_4",
+      "title": "【Capcom Fighting Collection】ドォンドゥン(銅鑼)【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-24",
+      "start": "2026-11-24T12:00:19Z",
+      "end": "2026-11-24T14:23:17Z",
+      "scheduledStart": "2026-11-24T12:00:00Z",
+      "actualStart": "2026-11-24T12:00:19Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=IHZ5rlAnT_4",
+      "thumbnail": "https://i.ytimg.com/vi/IHZ5rlAnT_4/mqdefault.jpg",
       "candidate": false,
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
