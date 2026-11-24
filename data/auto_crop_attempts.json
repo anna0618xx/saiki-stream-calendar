@@ -184,5 +184,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "tBVR_buPVrY": {
+    "at": "2026-11-24T04:29:10.131861+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }
