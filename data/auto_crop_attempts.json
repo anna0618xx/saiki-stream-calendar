@@ -202,5 +202,11 @@
     "result": "unavailable",
     "stage": "yt_dlp",
     "reason": "bot_check"
+  },
+  "ibPfmujFKKE": {
+    "at": "2026-11-27T02:30:09.156229+00:00",
+    "result": "unavailable",
+    "stage": "yt_dlp",
+    "reason": "bot_check"
   }
 }

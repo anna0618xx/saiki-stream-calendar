@@ -1443,5 +1443,10 @@
     "ratio": 0.096,
     "tiles": 6,
     "isGreen": false
+  },
+  "ibPfmujFKKE": {
+    "ratio": 1.0,
+    "tiles": 108,
+    "isGreen": true
   }
 }

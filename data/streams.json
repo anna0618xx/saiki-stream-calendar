@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T19:09:03.218832+00:00",
+  "generatedAt": "2026-11-27T02:29:55.814915+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5544,6 +5544,25 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "",
       "greenScore": 0.096,
+      "available": true
+    },
+    {
+      "videoId": "ibPfmujFKKE",
+      "title": "朝は来るっていうのに俺は【にじさんじ／佐伯イッテツ】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-27",
+      "start": "2026-11-26T20:29:32Z",
+      "end": "2026-11-26T22:14:40Z",
+      "scheduledStart": "2026-11-26T20:30:00Z",
+      "actualStart": "2026-11-26T20:29:32Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=ibPfmujFKKE",
+      "thumbnail": "https://i.ytimg.com/vi/ibPfmujFKKE/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "chat",
+      "greenScore": 1.0,
       "available": true
     }
   ],
