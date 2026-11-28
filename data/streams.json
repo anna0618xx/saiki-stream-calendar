@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T02:29:55.814915+00:00",
+  "generatedAt": "2026-11-28T16:27:23.364878+00:00",
   "streams": [
     {
       "videoId": "sfyLkXoiIWg",
@@ -5563,6 +5563,44 @@
       "source": "nijisanji-wiki-2026",
       "suggestedTag": "chat",
       "greenScore": 1.0,
+      "available": true
+    },
+    {
+      "videoId": "mNo_C2zKFkA",
+      "title": "【人生ゲーム for Nintendo Switch】オリエンスはどう生きる？ガチ人生ドキュメンタリー【 Oriens / にじさんじ 】",
+      "channel": "Oriensオリエンス【にじさんじ】",
+      "channelType": "official",
+      "day": "2026-11-27",
+      "start": "2026-11-27T11:07:03Z",
+      "end": "2026-11-27T15:07:43Z",
+      "scheduledStart": "2026-11-27T11:00:00Z",
+      "actualStart": "2026-11-27T11:07:03Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=mNo_C2zKFkA",
+      "thumbnail": "https://i.ytimg.com/vi/mNo_C2zKFkA/mqdefault.jpg",
+      "candidate": true,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.054,
+      "available": true
+    },
+    {
+      "videoId": "-qkqxYq6EpA",
+      "title": "【APEXコラボ】告知を担いでトリオで行くチャンピオン旅！　※佐伯支店【にじさんじ／佐伯イッテツ/叢雲カゲツ/宇佐美リト】",
+      "channel": "佐伯イッテツ / Saiki Ittetsu【にじさんじ】",
+      "channelType": "self",
+      "day": "2026-11-28",
+      "start": "2026-11-28T12:04:20Z",
+      "end": "2026-11-28T14:13:52Z",
+      "scheduledStart": "2026-11-28T12:00:00Z",
+      "actualStart": "2026-11-28T12:04:20Z",
+      "status": "ended",
+      "url": "https://www.youtube.com/watch?v=-qkqxYq6EpA",
+      "thumbnail": "https://i.ytimg.com/vi/-qkqxYq6EpA/mqdefault.jpg",
+      "candidate": false,
+      "source": "nijisanji-wiki-2026",
+      "suggestedTag": "",
+      "greenScore": 0.0,
       "available": true
     }
   ],
